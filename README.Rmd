@@ -168,11 +168,6 @@ response = list('683736X2X27' = "LimeRick",
 
 # adding the above response 
 lsAddResponse(surveyID, response)
-
-# or adding via wrapper function
-lsAddFeedback(feedback = "Good job! (Kamil, Poland)", 
-              sector = "academia", 
-              country = "Poland")
 ```
 
 ## See also:

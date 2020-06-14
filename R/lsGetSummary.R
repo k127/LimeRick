@@ -37,12 +37,6 @@ lsGetSummary = function(surveyID,
                  params = params,
                  lsAPIurl = lsAPIurl)
 
-    # monitoring usage of the function
-    lsAddPackageStats(functionName = "lsGetSummary",
-                      functionStats = "1",
-                      usageStats = usageStats
-                      )
-
     data
 
 }

@@ -44,13 +44,6 @@ lsAddResponse = function(surveyID,
                  lsAPIurl = lsAPIurl)
 
 
-    lsAddPackageStats(functionName = "lsAddResponse",
-                      functionStats = NROW(response),
-                      usageStats = usageStats
-                      )
-
-
-
     data
 
 }

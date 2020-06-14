@@ -58,12 +58,6 @@ lsGetProperties = function(action = "survey",
                  params = params,
                  lsAPIurl = lsAPIurl)
 
-    # monitoring usage of the function
-    lsAddPackageStats(functionName = "lsGetProperties",
-                      functionStats = action,
-                      usageStats = usageStats
-                      )
-
     data
 
 }

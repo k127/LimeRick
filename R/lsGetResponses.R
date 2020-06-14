@@ -91,14 +91,6 @@ lsGetResponses = function(surveyID,
              encoding = "UTF-8",
              stringsAsFactors = FALSE)
 
-    # monitoring usage of the function
-    lsAddPackageStats(functionName = "lsGetResponses",
-                      functionStats = NROW(df),
-                      usageStats = usageStats
-                      )
-
-
-
     # returing data frame
     df
 

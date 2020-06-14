@@ -49,12 +49,6 @@ lsList = function(action = "surveys",
                  params = params,
                  lsAPIurl = lsAPIurl)
 
-    # monitoring usage of the function
-    lsAddPackageStats(functionName = "lsList",
-                      functionStats = action,
-                      usageStats = usageStats
-                      )
-
      data
 
 }

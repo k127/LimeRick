@@ -47,12 +47,6 @@ lsGetAnswerOptions = function(surveyID,
 
     }
 
-    # monitoring usage of the function
-    lsAddPackageStats(functionName = "lsGetAnswerOptions",
-                      functionStats = nAnswers,
-                      usageStats = usageStats
-                      )
-
     answerOptionsDF
 
 }
