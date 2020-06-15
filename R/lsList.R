@@ -24,8 +24,11 @@ lsList = function(action = "surveys",
     if (action == "questions")
         stop("action = \"questions\" is unsupported. Please use function lsListQuestion() instead.")
 
-    if (!action %in% c("surveys", "groups"))
-        stop("Wrong action parameter. Available are: 'surveys', 'groups'.")
+    if (action == "groups")
+        stop("action = \"groups\" is unsupported. Please use function lsListGroups() instead.")
+
+    if (action != "surveys")
+        stop("Wrong action parameter. Available are: 'surveys'.")
 
     # setting parameters for API call
     if (action == "surveys") {
@@ -33,16 +36,6 @@ lsList = function(action = "surveys",
      #   params = list(sSessionKey = sessionKey)
         method = "list_surveys"
         params = NULL
-
-    } else {
-
-        if (is.null(surveyID))
-            stop("Need to specify surveyID.")
-
-        params = list(sSessionKey = sessionKey,
-                      iSurveyID = surveyID)
-
-        method = "list_groups"
     }
 
     data = lsAPI(method = method,
