@@ -21,7 +21,7 @@ lsListQuestions(
 
 \item{lsAPIurl}{\emph{(optional)} The URL of the \emph{LimeSurvey RemoteControl 2} JSON-RPC API}
 
-\item{sessionKey}{\emph{(optional)} Authentication token, see \code{\link{lsSessionKey}}}
+\item{sessionKey}{\emph{(optional)} Authentication token, see \code{\link{lsSessionKey()}}}
 }
 \value{
 The list of questions
@@ -30,9 +30,11 @@ The list of questions
 Return the ids and info of (sub-)questions of a survey/group
 }
 \examples{
-lsListQuestions("123456")
-lsListQuestions("123456", lang = "fr")
-lsListQuestions("123456", lang = "fr", groupID = 1)
+\dontrun{
+  lsListQuestions("123456")
+  lsListQuestions("123456", lang = "fr")
+  lsListQuestions("123456", lang = "fr", groupID = 1)
+}
 
 }
 \seealso{

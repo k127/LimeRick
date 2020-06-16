@@ -9,7 +9,7 @@ lsListSurveys(lsAPIurl = getOption("lsAPIurl"), sessionKey = NULL)
 \arguments{
 \item{lsAPIurl}{\emph{(optional)} The URL of the \emph{LimeSurvey RemoteControl 2} JSON-RPC API}
 
-\item{sessionKey}{\emph{(optional)} Authentication token, see \code{\link{lsSessionKey}}}
+\item{sessionKey}{\emph{(optional)} Authentication token, see \code{\link{lsSessionKey()}}}
 }
 \value{
 An dataframe with
@@ -23,7 +23,9 @@ An dataframe with
 List available surveys
 }
 \examples{
-lsListSurveys()
+\dontrun{
+  lsListSurveys()
+}
 
 }
 \seealso{

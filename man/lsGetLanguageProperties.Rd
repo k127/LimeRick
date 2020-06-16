@@ -21,7 +21,7 @@ lsGetLanguageProperties(
 
 \item{lsAPIurl}{\emph{(optional)} The URL of the \emph{LimeSurvey RemoteControl 2} JSON-RPC API}
 
-\item{sessionKey}{\emph{(optional)} Authentication token, see \code{\link{lsSessionKey}}}
+\item{sessionKey}{\emph{(optional)} Authentication token, see \code{\link{lsSessionKey()}}}
 }
 \value{
 A list in case of success containing the requested values
@@ -30,15 +30,18 @@ A list in case of success containing the requested values
 Get survey language properties
 }
 \examples{
-lsGetLanguageProperties(123456)
-lsGetLanguageProperties(123456, lang = "fr")
-lsGetLanguageProperties(123456, properties = list("surveyls_email_confirm"))
-lsGetLanguageProperties(123456, lang = "fr", properties = list("surveyls_email_confirm"))
+\dontrun{
+  lsGetLanguageProperties("123456")
+  lsGetLanguageProperties("123456", lang = "fr")
+  lsGetLanguageProperties("123456", properties = list("surveyls_email_confirm"))
+  lsGetLanguageProperties("123456", lang = "fr",
+                          properties = list("surveyls_email_confirm"))
+}
 
 }
 \seealso{
 \itemize{
-  \item \code{\link[LimeRick]{lsSetLanguageProperties}}
+  \item \code{\link{lsSetLanguageProperties()}}
   \item \url{https://api.limesurvey.org/classes/remotecontrol_handle.html#method_get_language_properties}
 }
 }

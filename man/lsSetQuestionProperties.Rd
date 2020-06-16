@@ -16,7 +16,7 @@ lsSetQuestionProperties(
 \item{questionID}{(!) The (numeric) question ID, which is unique for all surveys -- not to be confused with question code}
 
 \item{properties}{A list with the particular field names as keys and their values to set on that particular question
-(see \code{lsListQuestions()} for available properties. \strong{Restricted} properties are:
+(see \code{\link{lsListQuestions()}} for available properties. \strong{Restricted} properties are:
 \code{qid}, \code{gid}, \code{sid}, \code{parent_qid}, \code{language}, \code{type},
 \code{question_order} in some condition (with dependecies).}
 
@@ -24,7 +24,7 @@ lsSetQuestionProperties(
 
 \item{lsAPIurl}{\emph{(optional)} The URL of the \emph{LimeSurvey RemoteControl 2} JSON-RPC API}
 
-\item{sessionKey}{\emph{(optional)} Authentication token, see \code{\link{lsSessionKey}}}
+\item{sessionKey}{\emph{(optional)} Authentication token, see \code{\link{lsSessionKey()}}}
 }
 \value{
 List of succeeded and failed modifications according to internal validation
@@ -33,12 +33,14 @@ List of succeeded and failed modifications according to internal validation
 Set question properties
 }
 \examples{
-lsSetQuestionProperties(questionID = 10, lang = "fr", properties = list(question = "Âge"))
+\dontrun{
+  lsSetQuestionProperties(questionID = 10, lang = "fr", properties = list(question = "Âge"))
+}
 
 }
 \seealso{
 \itemize{
-  \item \code{\link[LimeRick]{lsGetProperties}}
+  \item \code{\link{lsGetProperties()}}
   \item \url{https://api.limesurvey.org/classes/remotecontrol_handle.html#method_set_question_properties}
 }
 }
