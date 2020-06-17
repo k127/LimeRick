@@ -1,10 +1,22 @@
-#' Function directly calling the LimeSurvey API
-#' todo: documentation
+#' Low level API calls
+#'
+#' Fire a request against the \emph{LimeSurvey RemoteControl 2} JSON-RPC API.
+#'
+#' @param method The API method name
+#' @param params A list of \code{method}'s parameters (make sure to keep the element order as specified in API doc)
+#' @param lsAPIurl \emph{(optional)} The API URL
+#'
+#' @return Whatever the API responds to this method specific request
+#'
+#' @examples \dontrun{
+#'   lsAPI("get_summary", params = list(iSurveyID = "123456", sStatName = "all"))
+#' }
+#'
+#' @seealso \itemize{
+#'   \item \url{https://api.limesurvey.org/classes/remotecontrol_handle.html}
+#' }
+#'
 #' @export
-
-
-# todo: there may also be in the future a function for connecting with LS without API
-
 lsAPI = function(method,
                  params = NULL,
                  lsAPIurl = getOption("lsAPIurl")) {
@@ -15,15 +27,22 @@ lsAPI = function(method,
     if (missing(method))
         stop("Need to specify method function for the LimeSurvey API.")
 
+    # add session key if missing in params
+    # (!) note that the session key must be the first element in params
     if (!method %in% c("get_session_key", "release_session_key")) {
 
         if (is.null(params$sSessionKey) & is.null(lsSessionCache$sessionKey))
             stop("Need a session key. Either provide in function argument param or set environment with lsGetSessionKey()")
 
-        if (is.null(params))
+        if (is.null(params)) # list is null
             params = list(sSessionKey = lsSessionCache$sessionKey)
 
-        if (is.null(params$sSessionKey))
+        # this case is rather rare since there should be a session key NULL placeholder
+        # in the high level calling functions's param object to keep the argument order
+        if (!"sSessionKey" %in% names(params)) # key does not exists
+            params = c(list(sSessionKey = lsSessionCache$sessionKey), params) # session key probably must _prepend_ list
+
+        if (is.null(params$sSessionKey)) # key does exist, but is null
             params$sSessionKey = lsSessionCache$sessionKey
     }
 
