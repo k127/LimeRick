@@ -7,26 +7,30 @@
 
 lsAPI = function(method,
                  params = NULL,
-                 lsAPIurl = getOption("lsAPIurl")
-                 ){
+                 lsAPIurl = getOption("lsAPIurl")) {
 
     if (is.null(lsAPIurl))
-        stop("Need to specify LimeSurvey API URL (lsAPIurl).")
+        stop("Need to specify LimeSurvey API URL (lsAPIurl). \nYou can do it once by options(lsAPIurl = 'your_api_url').")
 
     if (missing(method))
         stop("Need to specify method function for the LimeSurvey API.")
 
-    if (is.null(params)) {
+    if (!method %in% c("get_session_key", "release_session_key")) {
 
-        params = list(sSessionKey = lsSessionCache$sessionKey )
+        if (is.null(params$sSessionKey) & is.null(lsSessionCache$sessionKey))
+            stop("Need a session key. Either provide in function argument param or set environment with lsGetSessionKey()")
 
+        if (is.null(params))
+            params = list(sSessionKey = lsSessionCache$sessionKey)
+
+        if (is.null(params$sSessionKey))
+            params$sSessionKey = lsSessionCache$sessionKey
     }
 
     # preparing the body of the API call in JSON format
     bodyJSON = list(method = method,
                     id = " ",
-                    params = params
-                    )
+                    params = params)
 
     bodyJSON = jsonlite::toJSON(bodyJSON, auto_unbox = TRUE)
 
@@ -40,9 +44,7 @@ lsAPI = function(method,
     # until it succeeds, if you you are trying to talk to an unreliable service
     apiResponse = httr::RETRY("POST", lsAPIurl,
                               httr::content_type_json(),
-                              body = bodyJSON
-                              )
-
+                              body = bodyJSON)
 
     # checking status code;
     # suprisingly API returns code 200 event if something is not ok (wrong password)
@@ -66,7 +68,6 @@ lsAPI = function(method,
 
             # print(httr::headers(apiResponse))
             apiResult
-
         }
 
     } else {
@@ -74,9 +75,5 @@ lsAPI = function(method,
         cat('Status code is not 200! \n')
         stop(httr::http_status(apiResponse)$message)
         #cat('\n', httr::content(apiResult)$error)
-
-
-
     }
-
 }

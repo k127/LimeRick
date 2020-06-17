@@ -9,26 +9,15 @@
 lsGetAnswerOptions = function(surveyID,
                               questionID,
                               lsAPIurl = getOption("lsAPIurl"),
-                              sessionKey = NULL,
-                              usageStats = getOption("LimeRickStats")
-                  ){
+                              sessionKey = NULL) {
 
-    if (is.null(lsAPIurl))
-         stop("Need to specify LimeSurvey API URL (lsAPIurl). \nYou can do it once by options(lsAPIurl = 'your_api_url').")
-
-    if (is.null(sessionKey)) { sessionKey = lsSessionCache$sessionKey }
-
-    if (is.null(sessionKey))
-        stop("Need to have a session key. Use lsSessionKey('get') function.")
-
-
-    if (missing(surveyID))
+    if (is.null(surveyID))
         stop("Need to specify surveyID.")
 
-    if (missing(surveyID))
+    if (is.null(questionID))
         stop("Need to specify questionID.")
 
-    properties = lsGetProperties('question', surveyID, questionID)
+    properties = lsGetProperties("question", surveyID, questionID)
 
     answerOptionsList = properties$answeroptions
 
@@ -36,6 +25,7 @@ lsGetAnswerOptions = function(surveyID,
         stop("No available answer options for this specific question.")
 
     nAnswers = NROW(answerOptionsList)
+
     answerOptionsDF = data.frame(answerCode = character(nAnswers),
                                  answerText = character(nAnswers),
                                  stringsAsFactors = FALSE)
@@ -44,9 +34,7 @@ lsGetAnswerOptions = function(surveyID,
 
         answerOptionsDF[i,]$answerCode = names(answerOptionsList[i])
         answerOptionsDF[i,]$answerText = answerOptionsList[[i]]$answer
-
     }
 
     answerOptionsDF
-
 }

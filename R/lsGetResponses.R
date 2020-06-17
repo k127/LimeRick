@@ -33,9 +33,7 @@ lsGetResponses = function(surveyID,
                           toResponseID = NULL,
                           fields = NULL,
                           lsAPIurl = getOption("lsAPIurl"),
-                          sessionKey = NULL,
-                          usageStats = getOption("LimeRickStats")
-                          ){
+                          sessionKey = NULL) {
 
     # todo: wokring with other document types (JSON especially; is a bit
     # problematic)
@@ -45,19 +43,8 @@ lsGetResponses = function(surveyID,
 
     # todo: implement from and to ResponseID
 
-
-
-    if (is.null(lsAPIurl))
-         stop("Need to specify LimeSurvey API URL (lsAPIurl). \nYou can do it once by options(lsAPIurl = 'your_api_url').")
-
-    if (is.null(sessionKey)) { sessionKey = lsSessionCache$sessionKey }
-
-    if (is.null(sessionKey))
-        stop("Need to have a session key. Use lsSessionKey('get') function.")
-
     if (!completionStatus %in% c("all", "complete", "incomplete"))
          stop("Wrong completionStatus parameter. Available are: 'all', 'complete', 'incomplete'.")
-
 
     # setting parameters for API call
     params = list(sSessionKey = sessionKey,

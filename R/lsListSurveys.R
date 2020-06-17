@@ -25,14 +25,6 @@ lsListSurveys = function(
                          lsAPIurl = getOption("lsAPIurl"),
                          sessionKey = NULL) {
 
-    if (is.null(lsAPIurl))
-         stop("Need to specify LimeSurvey API URL (lsAPIurl). \nYou can do it once by options(lsAPIurl = 'your_api_url').")
-
-    if (is.null(sessionKey)) { sessionKey = lsSessionCache$sessionKey }
-
-    if (is.null(sessionKey))
-        stop("Need to have a session key. Use lsSessionKey('get') function.")
-
     params = list(sSessionKey = sessionKey,
                   sUsername = username)
 

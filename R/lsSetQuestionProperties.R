@@ -26,20 +26,12 @@ lsSetQuestionProperties = function(questionID,
                                    lang = NULL,
                                    lsAPIurl = getOption("lsAPIurl"),
                                    sessionKey = NULL) {
-  
-  if (is.null(lsAPIurl))
-    stop("Need to specify LimeSurvey API URL (lsAPIurl). \nYou can do it once by options(lsAPIurl = 'your_api_url').")
-  
-  if (is.null(sessionKey)) { sessionKey = lsSessionCache$sessionKey }
-  
-  if (is.null(sessionKey))
-    stop("Need to have a session key. Use lsSessionKey('get') function.")
-  
+
   params = list(sSessionKey = sessionKey,
                 iQuestionID = questionID,
                 aQuestionData = properties,
                 sLanguage = lang)
-  
+
   list = lsAPI(method = "set_question_properties",
                params = params,
                lsAPIurl = lsAPIurl)

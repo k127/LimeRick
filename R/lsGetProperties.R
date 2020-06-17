@@ -11,18 +11,7 @@ lsGetProperties = function(action = "survey",
                            questionID = NULL,
                            languageCode = "en",
                            lsAPIurl = getOption("lsAPIurl"),
-                           sessionKey = NULL,
-                           usageStats = getOption("LimeRickStats")
-                           ){
-
-
-    if (is.null(lsAPIurl))
-         stop("Need to specify LimeSurvey API URL (lsAPIurl). \nYou can do it once by options(lsAPIurl = 'your_api_url').")
-
-    if (is.null(sessionKey)) { sessionKey = lsSessionCache$sessionKey }
-
-    if (is.null(sessionKey))
-        stop("Need to have a session key. Use lsSessionKey('get') function.")
+                           sessionKey = NULL) {
 
     if (!action %in% c("survey", "question"))
         stop("Wrong action parameter. Available are: 'survey', 'question'.")
