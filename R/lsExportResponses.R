@@ -82,7 +82,7 @@ lsExportResponses = function(surveyID,
     # importing data from CSV format into data frame
     # (!) this specific format is tested against LimeSurvey 3.22.15:
     # CSV field separator is a semicolon (";")!
-    df = read.csv(textConnection(data),
+    df = utils::read.csv(textConnection(data),
                   encoding = "UTF-8",
                   quote = "'\"",
                   sep = ";",
