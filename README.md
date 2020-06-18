@@ -49,7 +49,7 @@ devtools::install_github("k127/LimeRick")
 ``` r
 library(LimeRick)
 #> 
-#> Welcome to LimeRick package version: 0.0.1.9000
+#> Welcome to LimeRick package version: 0.0.2.9000
 #> 
 #> Package website: http://k127.github.io/LimeRick
 #> 
