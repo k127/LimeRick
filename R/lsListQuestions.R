@@ -4,7 +4,7 @@
 #' @param groupID \emph{(optional)} ID of the group to list questions
 #' @param lang \emph{(optional)} Language code for the language - if not given the base language of the particular survey is used
 #' @param lsAPIurl \emph{(optional)} The URL of the \emph{LimeSurvey RemoteControl 2} JSON-RPC API
-#' @param sessionKey \emph{(optional)} Authentication token, see \code{\link{lsSessionKey()}}
+#' @param sessionKey \emph{(optional)} Authentication token, see \code{\link{lsGetSessionKey()}}
 #'
 #' @return The list of questions
 #'
@@ -18,6 +18,7 @@
 #' \url{https://api.limesurvey.org/classes/remotecontrol_handle.html#method_list_questions}
 #'
 #' @export
+#'
 lsListQuestions = function(surveyID,
                            groupID = NULL,
                            lang = NULL,

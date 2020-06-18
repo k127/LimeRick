@@ -3,7 +3,7 @@
 # THIS DOESN'T SEEM TO WORK ON THE API SIDE:
 # @param username \emph{(optional)} To get all surveys belonging to username, otherwise get all surveys
 #' @param lsAPIurl \emph{(optional)} The URL of the \emph{LimeSurvey RemoteControl 2} JSON-RPC API
-#' @param sessionKey \emph{(optional)} Authentication token, see \code{\link{lsSessionKey()}}
+#' @param sessionKey \emph{(optional)} Authentication token, see \code{\link{lsGetSessionKey()}}
 #'
 #' @return An dataframe with
 #'   \code{sid} the ids of survey,
@@ -20,6 +20,7 @@
 #' \url{https://api.limesurvey.org/classes/remotecontrol_handle.html#method_list_surveys}
 #'
 #' @export
+#'
 lsListSurveys = function(
 #    username = NULL,
                          lsAPIurl = getOption("lsAPIurl"),

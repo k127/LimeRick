@@ -5,7 +5,7 @@
 #' @param surveyID ID of the survey
 #' @param properties \emph{(optional)} A vector with the particular property names to request, otherwise get all settings
 #' @param lsAPIurl \emph{(optional)} The URL of the \emph{LimeSurvey RemoteControl 2} JSON-RPC API
-#' @param sessionKey \emph{(optional)} Authentication token, see \code{\link{lsSessionKey()}}
+#' @param sessionKey \emph{(optional)} Authentication token, see \code{\link{lsGetSessionKey()}}
 #'
 #' @return A list of survey properties or a single property
 #'
@@ -22,6 +22,7 @@
 #' }
 #'
 #' @export
+#'
 lsGetSurveyProperties = function(surveyID,
                                  properties = NULL,
                                  lsAPIurl = getOption("lsAPIurl"),

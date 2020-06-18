@@ -4,7 +4,7 @@
 #' @param properties array|null  \emph{(optional)} A list with the particular properties to get, default to all attributes
 #' @param lang \emph{(optional)} Language code for the language to update - if not given the base language of the particular survey is used
 #' @param lsAPIurl \emph{(optional)} The URL of the \emph{LimeSurvey RemoteControl 2} JSON-RPC API
-#' @param sessionKey \emph{(optional)} Authentication token, see \code{\link{lsSessionKey()}}
+#' @param sessionKey \emph{(optional)} Authentication token, see \code{\link{lsGetSessionKey()}}
 #'
 #' @return A list in case of success containing the requested values
 #'
@@ -22,6 +22,7 @@
 #' }
 #'
 #' @export
+#'
 lsGetLanguageProperties = function(surveyID,
                                    lang = NULL,
                                    properties = NULL,

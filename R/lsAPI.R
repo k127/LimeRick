@@ -17,6 +17,7 @@
 #' }
 #'
 #' @export
+#'
 lsAPI = function(method,
                  params = NULL,
                  lsAPIurl = getOption("lsAPIurl")) {

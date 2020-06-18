@@ -5,7 +5,7 @@
 #' @param questionID ID of the question
 #' @param lang \emph{(optional)} Language code for the language - if not given the base language of the particular survey is used
 #' @param lsAPIurl \emph{(optional)} The URL of the \emph{LimeSurvey RemoteControl 2} JSON-RPC API
-#' @param sessionKey \emph{(optional)} Authentication token, see \code{\link{lsSessionKey()}}
+#' @param sessionKey \emph{(optional)} Authentication token, see \code{\link{lsGetSessionKey()}}
 #'
 #' @return A table of answer options
 #'
@@ -18,6 +18,7 @@
 #' \link{\code{lsGetQuestionProperties()}}
 #'
 #' @export
+#'
 ls_getAnswerOptions = function(questionID,
                                lang = NULL,
                                lsAPIurl = getOption("lsAPIurl"),

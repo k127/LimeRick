@@ -6,7 +6,7 @@
 #'   e.g. \code{"527317X1X11"}. To obtain these group and question IDs,
 #'   see \code{\link{lsListGroups()}} and \code{\link{lsListQuestions()}}
 #' @param lsAPIurl \emph{(optional)} The URL of the \emph{LimeSurvey RemoteControl 2} JSON-RPC API
-#' @param sessionKey \emph{(optional)} Authentication token, see \code{\link{lsSessionKey()}}
+#' @param sessionKey \emph{(optional)} Authentication token, see \code{\link{lsGetSessionKey()}}
 #'
 #' @return The response ID or an list with status message (can include result_id)
 #'
@@ -19,6 +19,7 @@
 #' \url{https://api.limesurvey.org/classes/remotecontrol_handle.html#method_add_response}
 #'
 #' @export
+#'
 lsAddResponse = function(surveyID,
                          response,
                          lsAPIurl = getOption("lsAPIurl"),

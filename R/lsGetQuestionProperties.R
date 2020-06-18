@@ -6,7 +6,7 @@
 #' @param lang \emph{(optional)} Language code for the language - if not given the base language of the particular survey is used
 #' @param properties \emph{(optional)} A vector with the particular property names to request, otherwise get all settings
 #' @param lsAPIurl \emph{(optional)} The URL of the \emph{LimeSurvey RemoteControl 2} JSON-RPC API
-#' @param sessionKey \emph{(optional)} Authentication token, see \code{\link{lsSessionKey()}}
+#' @param sessionKey \emph{(optional)} Authentication token, see \code{\link{lsGetSessionKey()}}
 #'
 #' @return A list of question properties or a single property
 #'
@@ -16,11 +16,13 @@
 #' }
 #'
 #' @seealso \itemize{
+#'   \item \code{\link{lsSetQuestionProperties()}}
 #'   \item \url{https://api.limesurvey.org/classes/remotecontrol_handle.html#method_get_question_properties}
 #'   \item \url{https://api.limesurvey.org/classes/Question.html} (for a list of available properties)
 #' }
 #'
 #' @export
+#'
 lsGetQuestionProperties = function(questionID,
                                    lang = NULL,
                                    properties = NULL,

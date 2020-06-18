@@ -24,6 +24,7 @@
 #' }
 #'
 #' @export
+#'
 lsGetSessionKey = function(lsAPIurl = getOption("lsAPIurl"),
                            username = getOption("lsUser"),
                            password = getOption("lsPass"),

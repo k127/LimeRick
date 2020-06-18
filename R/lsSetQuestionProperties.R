@@ -7,7 +7,7 @@
 #'   \code{question_order} in some condition (with dependecies).
 #' @param lang \emph{(optional)} Language code for the language to update - if not given the base language of the particular survey is used
 #' @param lsAPIurl \emph{(optional)} The URL of the \emph{LimeSurvey RemoteControl 2} JSON-RPC API
-#' @param sessionKey \emph{(optional)} Authentication token, see \code{\link{lsSessionKey()}}
+#' @param sessionKey \emph{(optional)} Authentication token, see \code{\link{lsGetSessionKey()}}
 #'
 #' @return List of succeeded and failed modifications according to internal validation
 #'
@@ -16,11 +16,12 @@
 #' }
 #'
 #' @seealso \itemize{
-#'   \item \code{\link{lsGetProperties()}}
+#'   \item \code{\link{lsGetQuestionProperties()}}
 #'   \item \url{https://api.limesurvey.org/classes/remotecontrol_handle.html#method_set_question_properties}
 #' }
 #'
 #' @export
+#'
 lsSetQuestionProperties = function(questionID,
                                    properties,
                                    lang = NULL,

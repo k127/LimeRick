@@ -21,7 +21,7 @@ see \code{\link{lsListGroups()}} and \code{\link{lsListQuestions()}}}
 
 \item{lsAPIurl}{\emph{(optional)} The URL of the \emph{LimeSurvey RemoteControl 2} JSON-RPC API}
 
-\item{sessionKey}{\emph{(optional)} Authentication token, see \code{\link{lsSessionKey()}}}
+\item{sessionKey}{\emph{(optional)} Authentication token, see \code{\link{lsGetSessionKey()}}}
 }
 \value{
 The response ID or an list with status message (can include result_id)
