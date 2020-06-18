@@ -6,7 +6,7 @@
 \usage{
 ls_getAnswerOptions(
   questionID,
-  lang = NULL,
+  lang,
   lsAPIurl = getOption("lsAPIurl"),
   sessionKey = NULL
 )
@@ -14,7 +14,10 @@ ls_getAnswerOptions(
 \arguments{
 \item{questionID}{ID of the question}
 
-\item{lang}{\emph{(optional)} Language code for the language - if not given the base language of the particular survey is used}
+\item{lang}{Language code for the survey language (\strong{Note:} The API expects
+one of the survey languages as part of the request rather than falling back to
+the default language of the survey. However, you can look up that default
+language using \code{\link{lsGetSurveyProperties()}})}
 
 \item{lsAPIurl}{\emph{(optional)} The URL of the \emph{LimeSurvey RemoteControl 2} JSON-RPC API}
 
@@ -28,11 +31,11 @@ A table of answer options
 }
 \examples{
 \dontrun{
-  lsGetQuestionProperties("13", lang = "en")
-  lsGetQuestionProperties("13", lang = "en", properties = list("mandatory"))
+  lsGetQuestionProperties("13", "en")
+  lsGetQuestionProperties(questionID = "13", lang = "en", properties = list("mandatory"))
 }
 
 }
 \seealso{
-\link{\code{lsGetQuestionProperties()}}
+\code{\link{lsGetQuestionProperties()}}
 }

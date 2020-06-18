@@ -3,7 +3,12 @@
 #' Get properties of a survey. All internal properties of a survey are available.
 #'
 #' @param questionID ID of the question
-#' @param lang \emph{(optional)} Language code for the language - if not given the base language of the particular survey is used
+# [LimeSurvey API BUG]
+#' @param lang Language code for the survey language which affects the question
+#'   title amongst other properties (\strong{Note:} The API expects
+#'   one of the survey languages as part of the request rather than falling back to
+#'   the default language of the survey. However, you can look up that default
+#'   language using \code{\link{lsGetSurveyProperties()}})
 #' @param properties \emph{(optional)} A vector with the particular property names to request, otherwise get all settings
 #' @param lsAPIurl \emph{(optional)} The URL of the \emph{LimeSurvey RemoteControl 2} JSON-RPC API
 #' @param sessionKey \emph{(optional)} Authentication token, see \code{\link{lsGetSessionKey()}}
@@ -24,7 +29,7 @@
 #' @export
 #'
 lsGetQuestionProperties = function(questionID,
-                                   lang = NULL,
+                                   lang,
                                    properties = NULL,
                                    lsAPIurl = getOption("lsAPIurl"),
                                    sessionKey = NULL) {

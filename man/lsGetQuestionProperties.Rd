@@ -6,7 +6,7 @@
 \usage{
 lsGetQuestionProperties(
   questionID,
-  lang = NULL,
+  lang,
   properties = NULL,
   lsAPIurl = getOption("lsAPIurl"),
   sessionKey = NULL
@@ -15,7 +15,11 @@ lsGetQuestionProperties(
 \arguments{
 \item{questionID}{ID of the question}
 
-\item{lang}{\emph{(optional)} Language code for the language - if not given the base language of the particular survey is used}
+\item{lang}{Language code for the survey language which affects the question
+title amongst other properties (\strong{Note:} The API expects
+one of the survey languages as part of the request rather than falling back to
+the default language of the survey. However, you can look up that default
+language using \code{\link{lsGetSurveyProperties()}})}
 
 \item{properties}{\emph{(optional)} A vector with the particular property names to request, otherwise get all settings}
 

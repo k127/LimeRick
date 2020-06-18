@@ -1,11 +1,16 @@
 #' Set question properties
 #'
-#' @param questionID (!) The (numeric) question ID, which is unique for all surveys -- not to be confused with question code
+#' @param questionID The question ID (which is unique for all surveys,
+#'   so no survey ID is required here) -- not to be confused with the question code
 #' @param properties A list with the particular field names as keys and their values to set on that particular question
 #'   (see \code{\link{lsListQuestions()}} for available properties. \strong{Restricted} properties are:
 #'   \code{qid}, \code{gid}, \code{sid}, \code{parent_qid}, \code{language}, \code{type},
 #'   \code{question_order} in some condition (with dependecies).
-#' @param lang \emph{(optional)} Language code for the language to update - if not given the base language of the particular survey is used
+# [Potential LimeSurvey API BUG]
+#' @param lang Language code for the survey language (\strong{Note:} The API expects
+#'   one of the survey languages as part of the request rather than falling back to
+#'   the default language of the survey. However, you can look up that default
+#'   language using \code{\link{lsGetSurveyProperties()}})
 #' @param lsAPIurl \emph{(optional)} The URL of the \emph{LimeSurvey RemoteControl 2} JSON-RPC API
 #' @param sessionKey \emph{(optional)} Authentication token, see \code{\link{lsGetSessionKey()}}
 #'
@@ -13,6 +18,7 @@
 #'
 #' @examples \dontrun{
 #'   lsSetQuestionProperties(questionID = 10, lang = "fr", properties = list(question = "Âge"))
+#'   lsSetQuestionProperties(10, "de", properties = list(question = "Alter"))
 #' }
 #'
 #' @seealso \itemize{
@@ -23,8 +29,8 @@
 #' @export
 #'
 lsSetQuestionProperties = function(questionID,
+                                   lang,
                                    properties,
-                                   lang = NULL,
                                    lsAPIurl = getOption("lsAPIurl"),
                                    sessionKey = NULL) {
 

@@ -2,14 +2,17 @@
 #'
 #' @param surveyID ID of the survey
 #' @param groupID \emph{(optional)} ID of the group to list questions
-#' @param lang \emph{(optional)} Language code for the language - if not given the base language of the particular survey is used
+# [LimeSurvey API BUG]
+#' @param lang Language code for the survey language (\strong{Note:} The API expects
+#'   one of the survey languages as part of the request rather than falling back to
+#'   the default language of the survey. However, you can look up that default
+#'   language using \code{\link{lsGetSurveyProperties()}})
 #' @param lsAPIurl \emph{(optional)} The URL of the \emph{LimeSurvey RemoteControl 2} JSON-RPC API
 #' @param sessionKey \emph{(optional)} Authentication token, see \code{\link{lsGetSessionKey()}}
 #'
 #' @return The list of questions
 #'
 #' @examples \dontrun{
-#'   lsListQuestions("123456")
 #'   lsListQuestions("123456", lang = "fr")
 #'   lsListQuestions("123456", lang = "fr", groupID = 1)
 #' }
@@ -20,8 +23,8 @@
 #' @export
 #'
 lsListQuestions = function(surveyID,
+                           lang,
                            groupID = NULL,
-                           lang = NULL,
                            lsAPIurl = getOption("lsAPIurl"),
                            sessionKey = NULL){
 

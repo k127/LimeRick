@@ -27,7 +27,8 @@ lsListSurveys = function(
                          sessionKey = NULL) {
 
     params = list(sSessionKey = sessionKey,
-                  sUsername = username)
+                  #sUsername = username
+                  sUsername = NULL)
 
     data = lsAPI(method = "list_surveys",
                  params = params,
