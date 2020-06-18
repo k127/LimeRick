@@ -1,6 +1,6 @@
 .onAttach <- function(libname, pkgname) {
 
-    packageStartupMessage(paste0('\nWelcome to LimeRick package version: ',
+    packageStartupMessage(paste("\nWelcome to LimeRick package version:",
                                  utils::packageVersion("LimeRick")))
 
     packageStartupMessage("\nPackage website: http://k127.github.io/LimeRick")
@@ -13,12 +13,15 @@
 
     packageStartupMessage("\nTo suppress this message use:\nsuppressPackageStartupMessages(library(LimeRick))")
 
-    packageStartupMessage('\nFirst you need to set login parameters and obtain a session key. \nSee the lsGetSessionKey() function help page (?lsGetSessionKey).\n')
+    packageStartupMessage("\nFirst you need to set login parameters and obtain a session key. \nSee the lsGetSessionKey() function help page (?lsGetSessionKey).\n")
 }
 
 #' Bridge between LimeSurvey and R
 #'
-#' The \code{LimeRick} package enables close connection between R and LimeSurvey – one of the most open source scripts for computer aided web interviewing. Using new LimeSurvey RemoteControl2 API for two-way data exchange allows for:
+#' The \code{LimeRick} package enables close connection between R and LimeSurvey
+#' -- one of the most open source scripts for computer aided web interviewing.
+#' Using the LimeSurvey RemoteControl2 JSON-RPC API for two way data exchange
+#' allows for:
 #' \itemize{
 #'   \item importing on-line survey responses into R,
 #'   \item adding new responses to the survey directly from R,
@@ -62,7 +65,3 @@
     lsSessionCache$check <- "OK"
 
 NULL
-
-
-# detach("package:LimeRick", unload=TRUE)
-# devtools::show_news()

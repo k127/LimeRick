@@ -54,7 +54,6 @@ lsAPI = function(method,
 
     bodyJSON = jsonlite::toJSON(bodyJSON, auto_unbox = TRUE)
 
-
     # the API call
     # apiResponse = httr::POST(lsAPIurl,
     #                          httr::content_type_json(),
@@ -67,33 +66,30 @@ lsAPI = function(method,
                               body = bodyJSON)
 
     # checking status code;
-    # suprisingly API returns code 200 event if something is not ok (wrong password)
+    # surprisingly API returns code 200 event if something is not OK (wrong password)
     if (httr::status_code(apiResponse) == 200) {
 
-        # cat('Status code is 200.\n')
         content = httr::content(apiResponse, encoding = "UTF-8")
 
         if (!is.character(content) && is.null(content$result))
-            stop('Server is responding but not in a proper way. Please check the API URL.')
+            stop("Server is responding but not in a proper way. Please check the API URL.")
 
         apiResult = jsonlite::fromJSON(content)$result
 
         # we need also check the response status
-        if (class(apiResult) == 'list' && !is.null(apiResult$status)) {
+        if (class(apiResult) == "list" && !is.null(apiResult$status)) {
 
             # throwing an error and stopping execution of the script
             stop(apiResult$status)
 
         } else {
 
-            # print(httr::headers(apiResponse))
             apiResult
         }
 
     } else {
 
-        cat('Status code is not 200! \n')
+        cat("Status code is not 200! \n")
         stop(httr::http_status(apiResponse)$message)
-        #cat('\n', httr::content(apiResult)$error)
     }
 }

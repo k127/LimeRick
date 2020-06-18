@@ -46,8 +46,8 @@ ls_getAnswerOptions = function(questionID,
 
     for (i in 1:nAnswers) {
 
-        answerOptionsDF[i,]$answerCode = names(answerOptionsList[i])
-        answerOptionsDF[i,]$answerText = answerOptionsList[[i]]$answer
+        answerOptionsDF[i, ]$answerCode = names(answerOptionsList[i])
+        answerOptionsDF[i, ]$answerText = answerOptionsList[[i]]$answer
     }
 
     answerOptionsDF
