@@ -5,7 +5,7 @@
 #' @param username \emph{(optional)} The LimeSurvey user name
 #' @param password \emph{(optional)} The LimeSurvey password
 #' @param lsAPIurl \emph{(optional)} The URL of the \emph{LimeSurvey RemoteControl 2} JSON-RPC API
-#' @param setEnvir Sets a session key enviroment variable so that it doesn't have to be passed as an argument to other functions
+#' @param setEnvir Sets a session key environment variable so that it doesn't have to be passed as an argument to other functions
 #'
 #' @return \itemize{
 #'   \item On success: the session key.

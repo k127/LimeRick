@@ -18,7 +18,7 @@ lsGetSessionKey(
 
 \item{password}{\emph{(optional)} The LimeSurvey password}
 
-\item{setEnvir}{Sets a session key enviroment variable so that it doesn't have to be passed as an argument to other functions}
+\item{setEnvir}{Sets a session key environment variable so that it doesn't have to be passed as an argument to other functions}
 }
 \value{
 \itemize{

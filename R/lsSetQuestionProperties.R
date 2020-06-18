@@ -5,7 +5,7 @@
 #' @param properties A list with the particular field names as keys and their values to set on that particular question
 #'   (see \code{\link{lsListQuestions()}} for available properties. \strong{Restricted} properties are:
 #'   \code{qid}, \code{gid}, \code{sid}, \code{parent_qid}, \code{language}, \code{type},
-#'   \code{question_order} in some condition (with dependecies).
+#'   \code{question_order} in some condition (with dependencies).
 # [Potential LimeSurvey API BUG]
 #' @param lang Language code for the survey language (\strong{Note:} The API expects
 #'   one of the survey languages as part of the request rather than falling back to

@@ -24,7 +24,7 @@ language using \code{\link{lsGetSurveyProperties()}})}
 \item{properties}{A list with the particular field names as keys and their values to set on that particular question
 (see \code{\link{lsListQuestions()}} for available properties. \strong{Restricted} properties are:
 \code{qid}, \code{gid}, \code{sid}, \code{parent_qid}, \code{language}, \code{type},
-\code{question_order} in some condition (with dependecies).}
+\code{question_order} in some condition (with dependencies).}
 
 \item{lsAPIurl}{\emph{(optional)} The URL of the \emph{LimeSurvey RemoteControl 2} JSON-RPC API}
 
