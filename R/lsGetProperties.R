@@ -13,8 +13,8 @@ lsGetProperties = function(action = "survey",
                            lsAPIurl = getOption("lsAPIurl"),
                            sessionKey = NULL) {
 
-    if (!action %in% c("survey", "question"))
-        stop("Wrong action parameter. Available are: 'survey', 'question'.")
+    actions = c("survey", "question")
+    action = match.arg(action, actions)
 
     # setting parameters for API call
     if (action == "survey") {

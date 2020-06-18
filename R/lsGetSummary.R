@@ -27,12 +27,10 @@ lsGetSummary = function(surveyID,
     stati = c("all", "completed_responses", "incomplete_responses",
               "full_responses", "token_count", "token_invalid", "token_sent",
               "token_opted_out", "token_completed", "token_screenout")
+    status = match.arg(status, stati)
 
     if (is.null(surveyID))
         stop("Need to specify surveyID.")
-
-    if (!status %in% stati)
-        stop("Status must be one out of:", paste0(stati, collapse = ", "))
 
     params = list(sSessionKey = sessionKey,
                   iSurveyID = surveyID,
