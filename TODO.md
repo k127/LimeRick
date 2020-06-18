@@ -18,7 +18,7 @@ title: Pending tasks for next release
 * [ ] Create package website `devtools::build_site()`
 * [ ] Set up CI deployment to respective GitHub pages `usethis::use_pkgdown_travis()`
       (<https://pkgdown.r-lib.org/reference/deploy_site_github.html>)
-* [ ] Regard funding organization (ISDC)
+* [ ] Regard funding organization (description file author `given = "...", role = "fnd"`)
 * [ ] Description file: fix maintainer
 * [ ] Description file: fix full authors
 * [ ] Description file: fix copyright holder
@@ -33,6 +33,7 @@ title: Pending tasks for next release
 * [ ] clear `/man/` and rebuild docs: `devtools::document()`
 * [ ] `devtools::build_site()`
 * [ ] `devtools::build_readme()` ...
+* [ ] Do <https://pkgdown.r-lib.org/reference/build_site.html>
 
 ## For each release do
 
@@ -47,6 +48,7 @@ title: Pending tasks for next release
 ## Build
 
 * [ ] *META* *TODO* Gather more relevant task from the above sections
+* [ ] Clean and build site: `pkgdown::clean_site();devtools::build_site()`
 
 ## Some vignette / article suggestions
 
