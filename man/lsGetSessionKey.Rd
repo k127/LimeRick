@@ -2,7 +2,7 @@
 % Please edit documentation in R/lsGetSessionKey.R
 \name{lsGetSessionKey}
 \alias{lsGetSessionKey}
-\title{Create and return a session key or close the RPC session}
+\title{Create and return a session key}
 \usage{
 lsGetSessionKey(
   lsAPIurl = getOption("lsAPIurl"),

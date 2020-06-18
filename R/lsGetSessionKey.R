@@ -1,4 +1,4 @@
-#' Create and return a session key or close the RPC session
+#' Create and return a session key
 #'
 #' Creates a new JSON-RPC session key. This is mandatory for all following \emph{LimeSurvey RemoteControl 2} function calls.
 #'
