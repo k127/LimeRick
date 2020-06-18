@@ -2,13 +2,31 @@
 % Please edit documentation in R/lsAPI.R
 \name{lsAPI}
 \alias{lsAPI}
-\title{Function directly calling the LimeSurvey API
-todo: documentation}
+\title{Low level API calls}
 \usage{
 lsAPI(method, params = NULL, lsAPIurl = getOption("lsAPIurl"))
 }
+\arguments{
+\item{method}{The API method name}
+
+\item{params}{A list of \code{method}'s parameters (make sure to keep the element order as specified in API doc)}
+
+\item{lsAPIurl}{\emph{(optional)} The API URL}
+}
+\value{
+Whatever the API responds to this method specific request
+}
 \description{
-Function directly calling the LimeSurvey API
-todo: documentation
+Fire a request against the \emph{LimeSurvey RemoteControl 2} JSON-RPC API.
+}
+\examples{
+\dontrun{
+  lsAPI("get_summary", params = list(iSurveyID = "123456", sStatName = "all"))
 }
 
+}
+\seealso{
+\itemize{
+  \item \url{https://api.limesurvey.org/classes/remotecontrol_handle.html}
+}
+}

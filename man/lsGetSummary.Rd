@@ -2,14 +2,40 @@
 % Please edit documentation in R/lsGetSummary.R
 \name{lsGetSummary}
 \alias{lsGetSummary}
-\title{Function for getting survey summary
-todo: documentation}
+\title{Get survey summary, regarding token usage and survey participation}
 \usage{
-lsGetSummary(surveyID, lsAPIurl = getOption("lsAPIurl"), sessionKey = NULL,
-  usageStats = getOption("LimeRickStats"))
+lsGetSummary(
+  surveyID,
+  status = "all",
+  lsAPIurl = getOption("lsAPIurl"),
+  sessionKey = NULL
+)
+}
+\arguments{
+\item{surveyID}{ID of the survey}
+
+\item{status}{\emph{(optional)} To request a specific status (\code{"completed_responses"},
+\code{"incomplete_responses"}, \code{"full_responses"}, \code{"token_count"}, \code{"token_invalid"},
+\code{"token_sent"}, \code{"token_opted_out"}, \code{"token_completed"}, \code{"token_screenout"})
+as string or \code{"all"} as a list}
+
+\item{lsAPIurl}{\emph{(optional)} The URL of the \emph{LimeSurvey RemoteControl 2} JSON-RPC API}
+
+\item{sessionKey}{\emph{(optional)} Authentication token, see \code{\link{lsGetSessionKey()}}}
+}
+\value{
+A string if \code{status} is provided and not \code{"all"},
+  otherwise a list containing all available values
 }
 \description{
-Function for getting survey summary
-todo: documentation
+Get survey summary, regarding token usage and survey participation
+}
+\examples{
+\dontrun{
+  lsGetSummary("123456")
 }
 
+}
+\seealso{
+\url{https://api.limesurvey.org/classes/remotecontrol_handle.html#method_get_summary}
+}

@@ -2,14 +2,40 @@
 % Please edit documentation in R/lsAddResponse.R
 \name{lsAddResponse}
 \alias{lsAddResponse}
-\title{Function for adding new responses to the survey
-todo: documentation}
+\title{Add a response to the survey responses collection}
 \usage{
-lsAddResponse(surveyID, response, lsAPIurl = getOption("lsAPIurl"),
-  sessionKey = NULL, usageStats = getOption("LimeRickStats"))
+lsAddResponse(
+  surveyID,
+  response,
+  lsAPIurl = getOption("lsAPIurl"),
+  sessionKey = NULL
+)
+}
+\arguments{
+\item{surveyID}{ID of the survey}
+
+\item{response}{The actual response. A list of answers, where the keys must
+follow the format \code{paste0(surveyID, "X", groupID, "X", questionID)}
+e.g. \code{"527317X1X11"}. To obtain these group and question IDs,
+see \code{\link{lsListGroups()}} and \code{\link{lsListQuestions()}}}
+
+\item{lsAPIurl}{\emph{(optional)} The URL of the \emph{LimeSurvey RemoteControl 2} JSON-RPC API}
+
+\item{sessionKey}{\emph{(optional)} Authentication token, see \code{\link{lsGetSessionKey()}}}
+}
+\value{
+The response ID or an list with status message (can include result_id)
 }
 \description{
-Function for adding new responses to the survey
-todo: documentation
+Add a response to the survey responses collection
+}
+\examples{
+\dontrun{
+  lsAddResponse("123456", list("326623X37X288" = "This answer comes via RPC",
+                               "326623X38X289" = "This one also"))
 }
 
+}
+\seealso{
+\url{https://api.limesurvey.org/classes/remotecontrol_handle.html#method_add_response}
+}

@@ -1,13 +1,14 @@
 Package: LimeRick
 Type: Package
 Title: Bridge between R and LimeSurvey
-Version: 0.0.1.9000
-Date: 2016-10-08
-Authors@R: c(person(given = "Kamil", family = "Wais", email = "kamil.wais@gmail.com",
-    role = c("aut", "cre")),
+Version: 0.0.2.9000
+Date: 2020-06-18
+Authors@R: c(
+    person("Kamil", "Wais", email = "kamil.wais@gmail.com", role = c("aut", "cph")),
     person("Andrew", "Heiss", role = "ctb"),
     person("Michał", "Pietal", role = "ctb"),
-    person("Jarosław", "Szkoła", role = "ctb"))
+    person("Jarosław", "Szkoła", role = "ctb"),
+    person("Klaus", "Hartl", email = "k127@gmx.de", role = c("aut", "cre")))
 Description: Enables close connection between R and LimeSurvey - one of the most
     advanced open-source scripts for Computer-Aided Web Interviewing.
     Using new RemoteControl2 API for two-way data exchange allows for
@@ -17,9 +18,9 @@ Description: Enables close connection between R and LimeSurvey - one of the most
     implementing passive measurement surveys,
     developing data products based on real-time declarative data collection, and more.
 License: MIT + file LICENSE
-URL: https://github.com/kalimu/LimeRick,
-    http://www.wais.kamil.rzeszow.pl/LimeRick
-BugReports: https://github.com/kalimu/genderizeR
+URL: https://github.com/k127/LimeRick,
+    https://k127.github.io/LimeRick
+BugReports: https://github.com/k127/LimeRick/issues
 Imports:
     httr (>= 1.2.1),
     base64enc (>= 0.1-3),
@@ -27,5 +28,10 @@ Imports:
 Depends:
     R (>= 3.3.1)
 Encoding: UTF-8
+Language: en-US
 LazyData: true
-RoxygenNote: 5.0.1
+RoxygenNote: 7.1.0
+Suggests:
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr

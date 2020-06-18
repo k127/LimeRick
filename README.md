@@ -1,38 +1,47 @@
-
-<!-- README.md is generated from README.Rmd. Please edit that file -->
 LimeRick
-========
+================
 
-[![Project Status: active](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/LimeRick)](https://cran.r-project.org/package=LimeRick) [![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/LimeRick?)](https://github.com/metacran/cranlogs.app)
+<!-- README.md is generated from README.Rmd. Please edit this file -->
 
-<strong>Bridge between R and LimeSurvey</strong>
-by Kamil Wais, Ph. D. ([homepage / contact](http://www.wais.kamil.rzeszow.pl))
+<!--
+[![Project Status: Concept – Minimal or no implementation has been done yet, or the repository is only intended to be a limited example, demo, or proof-of-concept.](https://www.repostatus.org/badges/latest/concept.svg)](https://www.repostatus.org/#concept)[![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://choosealicense.com/licenses/mit/)[![Last-changedate](https://img.shields.io/badge/last%20change-18431-yellowgreen.svg)](/commits/master)
 
-The package homepage: <http://www.wais.kamil.rzeszow.pl/LimeRick/>
 
-The LimeSurvey homepage: <http://limesurvey.org>
 
-LimeRick: motivation
---------------------
+[![Project Status: active](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/)
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/LimeRick)](https://cran.r-project.org/package=LimeRick)
+[![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/LimeRick?)](https://github.com/metacran/cranlogs.app)
+-->
 
--   need for a bridge that <span style="font-weight: bold">connects very closely</span> two important open-sorce projects (R and LimeSurvey)
--   need for an <span style="font-weight: bold">advanced tool</span> that allow for:
-    -   <span style="font-weight: bold">quickly importing</span> responses into R from active on-line surveys
-    -   <span style="font-weight: bold">automatically accessing</span> properties of survey and questions
-    -   <span style="font-weight: bold">montoring</span> survey status and responses directly from R
-    -   <span style="font-weight: bold">adding new responses</span> to a survey directly from R
-    -   <span style="font-weight: bold">simplifying workflow</span> for reproducible analysis<br> (by providing in advance structured data schema)
-    -   developing <span style="font-weight: bold">data products</span> based on <span style="font-weight: bold">real-time</span> declarative data collection<br> (ex. continous on-line tracking studies)
-    -   collecting meta-data of respondents interactions with on-line surveys <br>on <span style="font-weight: bold">unique low-granular level</span>
+**Bridge between R and LimeSurvey**
 
-LimeRick: tutorial
-------------------
+This package is a *[LimeSurvey](http://limesurvey.org) RemoteControl 2*
+JSON-RPC API Client.
 
-### Installing developer version from GitHub
+## Motivation
+
+  - need for a bridge that **connects very closely** two open source
+    projects (R and LimeSurvey)
+  - need for an **advanced tool** that allow for:
+      - **quickly importing** responses into R from active online
+        surveys
+      - **automatically accessing** properties of survey and questions
+      - **monitoring** survey status and responses directly from R
+      - **adding new responses** to a survey directly from R
+      - **simplifying workflow** for reproducible analysis <br/> (by
+        providing in advance structured data schema)
+      - developing **data products** based on **real-time** declarative
+        data collection <br/> (e.g. continuous online tracking studies)
+      - collecting meta-data of respondents interactions with online
+        surveys <br/> on **unique low-granular level**
+
+## Tutorial
+
+### Installing from GitHub
 
 ``` r
-# install.packages('devtools')
-devtools::install_github("kalimu/LimeRick")
+if (!require("devtools")) install.packages("devtools")
+devtools::install_github("k127/LimeRick")
 ```
 
 ### Loading the installed package
@@ -40,188 +49,117 @@ devtools::install_github("kalimu/LimeRick")
 ``` r
 library(LimeRick)
 #> 
-#> Welcome to LimeRick package version: 0.0.1.9000
+#> Welcome to LimeRick package version: 0.0.2.9000
 #> 
-#> Homepage: http://www.wais.kamil.rzeszow.pl/LimeRick
+#> Package website: http://k127.github.io/LimeRick
 #> 
-#> Changelog: news(package = 'LimeRick')
+#> Changelog: news(package = "LimeRick")
 #> Package help: help(LimeRick)
 #> 
 #> If you find this package useful cite it please. Thank you!
-#> See: citation('LimeRick')
+#> See: citation("LimeRick")
 #> 
 #> To suppress this message use:
 #> suppressPackageStartupMessages(library(LimeRick))
 #> 
 #> First you need to set login parameters and obtain a session key. 
-#> See the lsSessionKey() function help page (?lsSessionKey).
+#> See the lsGetSessionKey() function help page (?lsGetSessionKey).
 ```
 
 ### Configuring access to a survey
 
 ``` r
-# set link to the LimeSurvey API on the demo remote server
-options(lsAPIurl = 'http://odgar.pl/survey/index.php/admin/remotecontrol')
+# Set the LimeSurvey RemoteControl 2 JSON-RPC API URL
+options(lsAPIurl = "https://survey.example.com/index.php/admin/remotecontrol")
 
-# set LimeSurvey user login data for survey testing purposes
+# Set LimeSurvey credentials
 options(lsUser = "LimeRickDemo")
 options(lsPass = "LimeRickDemo")
 ```
 
-### Low-level API function calls vs. function wrappers
+### Low-level API function calls vs. function wrappers
 
 ``` r
-# low-level API call
-lsAPI(method = "release_session_key")
-#> [1] "OK"
+# Compare a low level API call …
+lsAPI(method = "get_session_key", params = list(admin = getOption("lsUser"),
+                                                password = getOption("lsPass")))
 
-# API call using a wrapper function
-lsSessionKey("release")
-#> Connecting to: http://odgar.pl/survey/index.php/admin/remotecontrol 
-#> Releasing session key...
-#> [1] "OK"
+# … to this Higher level API call
+lsGetSessionKey()
 ```
 
 ### Setting a connection to a survey
 
 ``` r
-# getting session key for the user and saving it inside a special environment
-lsSessionKey("set")
-#> Connecting to: http://odgar.pl/survey/index.php/admin/remotecontrol 
-#> Obtaining session key...
-#> [1] "yagmrycvd49tmim3w4u3n23thimtp952"
+# Get session key for the user and save it to the lsSessionCache environment
+lsGetSessionKey()
 
-# if you work with specific local set it now
+# If you work with a specific locale at LimeSurvey you maybe want to set it
 Sys.setlocale("LC_ALL", "Polish")
-#> [1] "LC_COLLATE=Polish_Poland.1250;LC_CTYPE=Polish_Poland.1250;LC_MONETARY=Polish_Poland.1250;LC_NUMERIC=C;LC_TIME=Polish_Poland.1250"
 ```
 
 ### Listing available surveys
 
 ``` r
-# listing available surveys
-(surveyList = lsList("surveys"))
-#>      sid                 surveyls_title startdate expires active
-#> 1 683736 Feedback survey for R Packages        NA      NA      Y
+# List available surveys
+(surveyList = lsListSurveys())
 
-# extracting ID of demo survey
+# Extract the ID of the first survey in the list
 surveyID = surveyList$sid[1] 
 ```
-
-### Adding responses via on-line survey questionaire
-
-``` r
-# try submit your own answers to the demo survey
-browseURL(paste0("http://odgar.pl/survey/index.php/survey/index/sid/", surveyID))
-```
-
-or use this link: <http://odgar.pl/survey/index.php/survey/index/sid/683736>
 
 ### Listing survey questions
 
 ``` r
-questionList = lsList("questions", surveyID)
+questionList = lsListQuestions(surveyID, lang = "en")
 ```
 
-### Accessing survey or question properites
+### Accessing survey or question properties
 
-We can access 22 question properties and 58 survey properties. For example:
+We can access all available question and survey properties. For example:
 
 ``` r
 # Is the survey active? (Y - Yes)
-lsGetProperties('survey', surveyID)$active
-#> [1] "Y"
+lsGetSurveyProperties(surveyID)$active
 
 # What is the main text of a given question?
-lsGetProperties('question', surveyID, 16)$question
-#> [1] "What sector do you represent?"
+lsGetQuestionProperties(13, lang = "en")$question
 
 # Is the question mandatory? (Y - Yes)
-lsGetProperties('question', surveyID, 16)$mandatory
-#> [1] "N"
+lsGetQuestionProperties(13, lang = "en")$mandatory
 ```
 
-### Checking survey response
+### Checking survey response summary
 
 ``` r
 lsGetSummary(surveyID)
-#> $completed_responses
-#> [1] "619"
-#> 
-#> $incomplete_responses
-#> [1] "46"
-#> 
-#> $full_responses
-#> [1] "665"
 ```
 
-### Importing responses into R
+### Export responses
 
 ``` r
-d = lsGetResponses(surveyID, completionStatus = 'complete')
+d = lsExportResponses(surveyID, completionStatus = "complete")
 tail(d)
-#>      id          submitdate lastpage startlanguage           startdate
-#> 614 661 2016-12-10 08:15:37       NA            en 2016-12-10 08:15:37
-#> 615 662 2016-12-10 08:15:39       NA            en 2016-12-10 08:15:39
-#> 616 673 2017-01-30 10:05:55        1            en 2017-01-30 10:05:24
-#> 617 675 2017-01-30 10:16:08       NA            en 2017-01-30 10:16:08
-#> 618 676 2017-01-30 10:17:38       NA            en 2017-01-30 10:17:38
-#> 619 680 2017-02-04 12:27:40        1            en 2017-02-04 12:27:39
-#>               datestamp   ipaddr packageName
-#> 614 2016-12-10 08:15:37             LimeRick
-#> 615 2016-12-10 08:15:39             LimeRick
-#> 616 2017-01-30 10:05:55 10.0.2.2    LimeRick
-#> 617 2017-01-30 10:16:08             LimeRick
-#> 618 2017-01-30 10:17:38             LimeRick
-#> 619 2017-02-04 12:27:40 10.0.2.2            
-#>                                                                                                                                                                                                                                                                                                                                                                                                                 feedback
-#> 614                                                                                                                                                                                                                                                                                                                                                                                      Adding feedback directly from R
-#> 615                                                                                                                                                                                                                                                                                                                                                                                            Good job! (Kamil, Poland)
-#> 616                                                                                                                                                                                                                                                                                                                                                                                                Sounds very promising
-#> 617                                                                                                                                                                                                                                                                                                                                                                                      Adding feedback directly from R
-#> 618                                                                                                                                                                                                                                                                                                                                                                                         Good job! (Jason, Liverpool)
-#> 619 Stress can have an unbelievable impact on health. It can come from a variety of sources and have a diversity of manifestations. The tips that are outlined below will aid in the identification of the factors that cause stress and in the steps that we can take to reduce its impacts or eliminate them entirely. \n \n<a href=https://www.acheterviagrafr24.com/viagra-prix-en-france/>viagra prix en france</a>
-#>       sector        country
-#> 614 academia         Poland
-#> 615 academia         Poland
-#> 616 academia United Kingdom
-#> 617 academia United Kingdom
-#> 618 academia United Kingdom
-#> 619            South Africa
 ```
 
-### Adding responses via R
+### Adding responses to the survey
 
 ``` r
-# showing possible options for a particular question
-lsGetAnswerOptions(surveyID, questionID = 16)
-#>   answerCode answerText
-#> 1         A1    private
-#> 2         A2   academia
-#> 3         A3        NGO
-#> 4         A4 government
-#> 5         A5      other
+# Show possible options for a particular question
+ls_getAnswerOptions(questionID = 13, lang = "en")
 
-# specifying a response with the use of question code: surveIDXgroupIDXquestionID
-response = list('683736X2X27' = "LimeRick",
-                '683736X2X26' = "Adding feedback directly from R",
-                '683736X2X16' = "A2",# Academia
-                '683736X2X21' = "174" # Poland
+# Create a response using question codes: surveyID+"X"+groupID+"X"+questionID
+response = list('123456X1X12' = "LimeRick",
+                '123456X1X17' = "Adding feedback directly from R",
+                '123456X2X28' = "A2",# Academia
+                '123456X2X29' = "174" # Poland
                 )
 
-# adding the above response 
+# Add the above response to the survey
 lsAddResponse(surveyID, response)
-#> [1] "697"
-
-# or adding via wrapper function
-lsAddFeedback(feedback = "Good job! (Kamil, Poland)", 
-              sector = "academia", 
-              country = "Poland")
-#> Thank you for the feedback!
-#> [1] "698"
 ```
 
-See also:
----------
+## See also
 
--   LimeSurvey Project Team / Carsten Schmitz (2015). / LimeSurvey: An Open Source survey tool /LimeSurvey Project Hamburg, Germany. URL <http://www.limesurvey.org>
+  - Limesurvey GmbH. / LimeSurvey: An Open Source survey tool
+    /LimeSurvey GmbH, Hamburg, Germany. URL <http://www.limesurvey.org>
