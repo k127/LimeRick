@@ -1,7 +1,29 @@
+v0.0.2-beta (2020-06-18)
+========================
+
+* Fix some warnings, quotes, typos and other minor things
+* Refactor language argument for multiple functions since API does not support fallback to default
+* Refactor fn lsGetAnswerOptions -> ls_getAnswerOptions
+* Refactor fn lsGetProperties -> lsGetQuestionProperties, lsGetSurveyProperties
+* Allow partial match for some factor args
+* Refactor fn lsGetResponses -> lsExportResponses
+* Refactor fn lsGetSummary
+* Refactor fn lsAPI
+* Purge fn arg usageStats, move lsAPIurl, sessionKey checks to fn lsAPI, slighty refactor code
+* Refactor fn lsSessionKey -> lsGetSessionKey, lsReleaseSessionKey
+* Implement function lsSetQuestionProperties
+* Implement function lsListSurveys, purge function lsList
+* Implement function lsListGroups, update function lsList
+* Implement function lsListQuestion, update function lsList
+* Implement functions lsGetLanguageProperties, lsSetLanguageProperties
+* Purge fns lsAddFeedback, lsAddPackageStats, lsGetPackages
+
+
 LimeRick 0.0.1 beta
 ====================
 
-* adding low- and high-level functions for adding responses directly from R (lsAddResponse())
+* adding two experimental functions allowing passive measurements and monitoring usage of the package (lsAddPackageStats(), lsGetPackageStats())
+* adding low- and high-level functions for adding responses directly from R (lsAddResponse(), lsAddFeedback())
 * lsGetResponses() for importing into R survey responses directly from LimeSurvey
 * lsGetSummary() for summarize responses for a survey (complete, incomplete, all)
 * lsGetAnswerOption() for listing options available for a given answer
