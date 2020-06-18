@@ -1,7 +1,8 @@
 LimeRick 0.0.1 beta
 ====================
 
-* adding low- and high-level functions for adding responses directly from R (lsAddResponse())
+* adding two experimental functions allowing passive measurements and monitoring usage of the package (lsAddPackageStats(), lsGetPackageStats())
+* adding low- and high-level functions for adding responses directly from R (lsAddResponse(), lsAddFeedback())
 * lsGetResponses() for importing into R survey responses directly from LimeSurvey
 * lsGetSummary() for summarize responses for a survey (complete, incomplete, all)
 * lsGetAnswerOption() for listing options available for a given answer
