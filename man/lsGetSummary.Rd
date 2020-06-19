@@ -36,6 +36,6 @@ Get survey summary, regarding token usage and survey participation
 }
 
 }
-\seealso{
+\references{
 \url{https://api.limesurvey.org/classes/remotecontrol_handle.html#method_get_summary}
 }

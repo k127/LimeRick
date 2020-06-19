@@ -40,10 +40,12 @@ Get properties of a survey. All internal properties of a survey are available.
 }
 
 }
-\seealso{
+\references{
 \itemize{
-  \item \code{\link{lsSetQuestionProperties()}}
   \item \url{https://api.limesurvey.org/classes/remotecontrol_handle.html#method_get_question_properties}
   \item \url{https://api.limesurvey.org/classes/Question.html} (for a list of available properties)
 }
+}
+\seealso{
+\code{\link{lsSetQuestionProperties()}}
 }

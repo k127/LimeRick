@@ -21,10 +21,9 @@
 #'   lsSetQuestionProperties(10, "de", properties = list(question = "Alter"))
 #' }
 #'
-#' @seealso \itemize{
-#'   \item \code{\link{lsGetQuestionProperties()}}
-#'   \item \url{https://api.limesurvey.org/classes/remotecontrol_handle.html#method_set_question_properties}
-#' }
+#' @seealso \code{\link{lsGetQuestionProperties()}}
+#'
+#' @references \url{https://api.limesurvey.org/classes/remotecontrol_handle.html#method_set_question_properties}
 #'
 #' @export
 #'

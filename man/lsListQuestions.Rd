@@ -39,6 +39,6 @@ Return the ids and info of (sub-)questions of a survey/group
 }
 
 }
-\seealso{
+\references{
 \url{https://api.limesurvey.org/classes/remotecontrol_handle.html#method_list_questions}
 }

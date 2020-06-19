@@ -16,10 +16,9 @@
 #'     surveyls_email_confirm = "Bonjour, this text comes from LimeRick"))
 #' }
 #'
-#' @seealso \itemize{
-#'   \item \code{\link{lsGetLanguageProperties()}}
-#'   \item \url{https://api.limesurvey.org/classes/remotecontrol_handle.html#method_set_language_properties}
-#' }
+#' @seealso \code{\link{lsGetLanguageProperties()}}
+#'
+#' @references \url{https://api.limesurvey.org/classes/remotecontrol_handle.html#method_set_language_properties}
 #'
 #' @export
 #'

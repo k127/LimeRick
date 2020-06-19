@@ -41,6 +41,6 @@ Export responses
 }
 
 }
-\seealso{
+\references{
 \url{https://api.limesurvey.org/classes/remotecontrol_handle.html#method_export_responses}
 }

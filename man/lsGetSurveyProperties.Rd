@@ -35,7 +35,7 @@ Get properties of a survey. All internal properties of a survey are available.
 }
 
 }
-\seealso{
+\references{
 \itemize{
   \item \url{https://api.limesurvey.org/classes/remotecontrol_handle.html#method_get_survey_properties}
   \item \url{https://api.limesurvey.org/classes/Survey.html} (for a list of available properties)

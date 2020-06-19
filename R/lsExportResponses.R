@@ -15,8 +15,7 @@
 #'   lsExportResponses("123456", completionStatus = "incomplete", headingType = "abbreviated")
 #' }
 #'
-#' @seealso
-#' \url{https://api.limesurvey.org/classes/remotecontrol_handle.html#method_export_responses}
+#' @references \url{https://api.limesurvey.org/classes/remotecontrol_handle.html#method_export_responses}
 #'
 #' @export
 #'

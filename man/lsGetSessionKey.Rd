@@ -37,9 +37,9 @@ Creates a new JSON-RPC session key. This is mandatory for all following \emph{Li
 }
 
 }
-\seealso{
-\itemize{
-  \item \code{\link{lsReleaseSessionKey()}}
-  \item \url{https://api.limesurvey.org/classes/remotecontrol_handle.html#method_get_session_key}
+\references{
+\url{https://api.limesurvey.org/classes/remotecontrol_handle.html#method_get_session_key}
 }
+\seealso{
+\code{\link{lsReleaseSessionKey()}}
 }

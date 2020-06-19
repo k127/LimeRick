@@ -17,8 +17,7 @@
 #'   lsListQuestions("123456", lang = "fr", groupID = 1)
 #' }
 #'
-#' @seealso
-#' \url{https://api.limesurvey.org/classes/remotecontrol_handle.html#method_list_questions}
+#' @references \url{https://api.limesurvey.org/classes/remotecontrol_handle.html#method_list_questions}
 #'
 #' @export
 #'

@@ -15,8 +15,7 @@
 #'   lsGetSummary("123456")
 #' }
 #'
-#' @seealso
-#' \url{https://api.limesurvey.org/classes/remotecontrol_handle.html#method_get_summary}
+#' @references \url{https://api.limesurvey.org/classes/remotecontrol_handle.html#method_get_summary}
 #'
 #' @export
 #'

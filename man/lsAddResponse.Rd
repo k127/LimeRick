@@ -36,6 +36,6 @@ Add a response to the survey responses collection
 }
 
 }
-\seealso{
+\references{
 \url{https://api.limesurvey.org/classes/remotecontrol_handle.html#method_add_response}
 }

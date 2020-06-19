@@ -18,10 +18,9 @@
 #'   lsGetSessionKey()
 #' }
 #'
-#' @seealso \itemize{
-#'   \item \code{\link{lsReleaseSessionKey()}}
-#'   \item \url{https://api.limesurvey.org/classes/remotecontrol_handle.html#method_get_session_key}
-#' }
+#' @seealso \code{\link{lsReleaseSessionKey()}}
+#'
+#' @references \url{https://api.limesurvey.org/classes/remotecontrol_handle.html#method_get_session_key}
 #'
 #' @export
 #'

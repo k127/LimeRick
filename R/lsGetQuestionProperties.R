@@ -20,8 +20,9 @@
 #'   lsGetQuestionProperties("13", lang = "en", properties = list("mandatory"))
 #' }
 #'
-#' @seealso \itemize{
-#'   \item \code{\link{lsSetQuestionProperties()}}
+#' @seealso \code{\link{lsSetQuestionProperties()}}
+#'
+#' @references \itemize{
 #'   \item \url{https://api.limesurvey.org/classes/remotecontrol_handle.html#method_get_question_properties}
 #'   \item \url{https://api.limesurvey.org/classes/Question.html} (for a list of available properties)
 #' }

@@ -18,8 +18,7 @@
 #'   lsGetQuestionProperties(questionID = "13", lang = "en", properties = list("mandatory"))
 #' }
 #'
-#' @seealso
-#' \code{\link{lsGetQuestionProperties()}}
+#' @seealso \code{\link{lsGetQuestionProperties()}}
 #'
 #' @export
 #'

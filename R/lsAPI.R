@@ -12,9 +12,7 @@
 #'   lsAPI("get_summary", params = list(iSurveyID = "123456", sStatName = "all"))
 #' }
 #'
-#' @seealso \itemize{
-#'   \item \url{https://api.limesurvey.org/classes/remotecontrol_handle.html}
-#' }
+#' @references \url{https://api.limesurvey.org/classes/remotecontrol_handle.html}
 #'
 #' @export
 #'

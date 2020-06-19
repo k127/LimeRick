@@ -15,8 +15,7 @@
 #'                                "326623X38X289" = "This one also"))
 #' }
 #'
-#' @seealso
-#' \url{https://api.limesurvey.org/classes/remotecontrol_handle.html#method_add_response}
+#' @references \url{https://api.limesurvey.org/classes/remotecontrol_handle.html#method_add_response}
 #'
 #' @export
 #'

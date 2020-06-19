@@ -28,6 +28,6 @@ List available surveys
 }
 
 }
-\seealso{
+\references{
 \url{https://api.limesurvey.org/classes/remotecontrol_handle.html#method_list_surveys}
 }

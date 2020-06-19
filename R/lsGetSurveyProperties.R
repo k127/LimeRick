@@ -16,7 +16,7 @@
 #'                                                     "anonymized"))
 #' }
 #'
-#' @seealso \itemize{
+#' @references \itemize{
 #'   \item \url{https://api.limesurvey.org/classes/remotecontrol_handle.html#method_get_survey_properties}
 #'   \item \url{https://api.limesurvey.org/classes/Survey.html} (for a list of available properties)
 #' }

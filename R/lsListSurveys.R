@@ -16,8 +16,7 @@
 #'   lsListSurveys()
 #' }
 #'
-#' @seealso
-#' \url{https://api.limesurvey.org/classes/remotecontrol_handle.html#method_list_surveys}
+#' @references \url{https://api.limesurvey.org/classes/remotecontrol_handle.html#method_list_surveys}
 #'
 #' @export
 #'

@@ -12,8 +12,7 @@
 #'   lsListGroups("123456", lang = "fr")
 #' }
 #'
-#' @seealso
-#' \url{https://api.limesurvey.org/classes/remotecontrol_handle.html#method_list_groups}
+#' @references \url{https://api.limesurvey.org/classes/remotecontrol_handle.html#method_list_groups}
 #'
 #' @export
 #'

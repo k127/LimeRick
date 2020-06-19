@@ -39,9 +39,9 @@ Set survey language properties
 }
 
 }
-\seealso{
-\itemize{
-  \item \code{\link{lsGetLanguageProperties()}}
-  \item \url{https://api.limesurvey.org/classes/remotecontrol_handle.html#method_set_language_properties}
+\references{
+\url{https://api.limesurvey.org/classes/remotecontrol_handle.html#method_set_language_properties}
 }
+\seealso{
+\code{\link{lsGetLanguageProperties()}}
 }

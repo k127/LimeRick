@@ -33,6 +33,6 @@ Get survey groups
 }
 
 }
-\seealso{
+\references{
 \url{https://api.limesurvey.org/classes/remotecontrol_handle.html#method_list_groups}
 }
