@@ -25,5 +25,5 @@ Closes a previously opened JSON-RPC session ("Log out").
 \url{https://api.limesurvey.org/classes/remotecontrol_handle.html#method_release_session_key}
 }
 \seealso{
-\code{\link{lsGetSessionKey()}}
+\code{\link{lsGetSessionKey}()}
 }

@@ -6,7 +6,7 @@
 #'   \code{"token_sent"}, \code{"token_opted_out"}, \code{"token_completed"}, \code{"token_screenout"})
 #'   as string or \code{"all"} as a list
 #' @param lsAPIurl \emph{(optional)} The URL of the \emph{LimeSurvey RemoteControl 2} JSON-RPC API
-#' @param sessionKey \emph{(optional)} Authentication token, see \code{\link{lsGetSessionKey()}}
+#' @param sessionKey \emph{(optional)} Authentication token, see \code{\link{lsGetSessionKey}}
 #'
 #' @return A string if \code{status} is provided and not \code{"all"},
 #'   otherwise a list containing all available values

@@ -19,13 +19,13 @@ lsGetQuestionProperties(
 title amongst other properties (\strong{Note:} The API expects
 one of the survey languages as part of the request rather than falling back to
 the default language of the survey. However, you can look up that default
-language using \code{\link{lsGetSurveyProperties()}})}
+language using \code{\link{lsGetSurveyProperties}()})}
 
 \item{properties}{\emph{(optional)} A vector with the particular property names to request, otherwise get all settings}
 
 \item{lsAPIurl}{\emph{(optional)} The URL of the \emph{LimeSurvey RemoteControl 2} JSON-RPC API}
 
-\item{sessionKey}{\emph{(optional)} Authentication token, see \code{\link{lsGetSessionKey()}}}
+\item{sessionKey}{\emph{(optional)} Authentication token, see \code{\link{lsGetSessionKey}()}}
 }
 \value{
 A list of question properties or a single property
@@ -47,5 +47,5 @@ Get properties of a survey. All internal properties of a survey are available.
 }
 }
 \seealso{
-\code{\link{lsSetQuestionProperties()}}
+\code{\link{lsSetQuestionProperties}()}
 }

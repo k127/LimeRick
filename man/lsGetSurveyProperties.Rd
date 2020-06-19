@@ -18,7 +18,7 @@ lsGetSurveyProperties(
 
 \item{lsAPIurl}{\emph{(optional)} The URL of the \emph{LimeSurvey RemoteControl 2} JSON-RPC API}
 
-\item{sessionKey}{\emph{(optional)} Authentication token, see \code{\link{lsGetSessionKey()}}}
+\item{sessionKey}{\emph{(optional)} Authentication token, see \code{\link{lsGetSessionKey}()}}
 }
 \value{
 A list of survey properties or a single property

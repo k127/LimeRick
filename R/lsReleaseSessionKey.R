@@ -10,7 +10,7 @@
 #'   lsReleaseSessionKey()
 #' }
 #'
-#' @seealso \code{\link{lsGetSessionKey()}}
+#' @seealso \code{\link{lsGetSessionKey}()}
 #'
 #' @references \url{https://api.limesurvey.org/classes/remotecontrol_handle.html#method_release_session_key}
 #'

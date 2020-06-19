@@ -21,7 +21,7 @@ lsSetLanguageProperties(
 
 \item{lsAPIurl}{\emph{(optional)} The URL of the \emph{LimeSurvey RemoteControl 2} JSON-RPC API}
 
-\item{sessionKey}{\emph{(optional)} Authentication token, see \code{\link{lsGetSessionKey()}}}
+\item{sessionKey}{\emph{(optional)} Authentication token, see \code{\link{lsGetSessionKey}()}}
 }
 \value{
 \code{OK} if save successful otherwise error text
@@ -43,5 +43,5 @@ Set survey language properties
 \url{https://api.limesurvey.org/classes/remotecontrol_handle.html#method_set_language_properties}
 }
 \seealso{
-\code{\link{lsGetLanguageProperties()}}
+\code{\link{lsGetLanguageProperties}()}
 }

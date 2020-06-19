@@ -4,9 +4,9 @@
 #' @param response The actual response. A list of answers, where the keys must
 #'   follow the format \code{paste0(surveyID, "X", groupID, "X", questionID)}
 #'   e.g. \code{"527317X1X11"}. To obtain these group and question IDs,
-#'   see \code{\link{lsListGroups()}} and \code{\link{lsListQuestions()}}
+#'   see \code{\link{lsListGroups}()} and \code{\link{lsListQuestions}()}
 #' @param lsAPIurl \emph{(optional)} The URL of the \emph{LimeSurvey RemoteControl 2} JSON-RPC API
-#' @param sessionKey \emph{(optional)} Authentication token, see \code{\link{lsGetSessionKey()}}
+#' @param sessionKey \emph{(optional)} Authentication token, see \code{\link{lsGetSessionKey}()}
 #'
 #' @return The response ID or an list with status message (can include result_id)
 #'
