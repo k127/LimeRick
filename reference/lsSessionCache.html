@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get properties of a question in a survey — lsGetQuestionProperties • LimeRick</title>
+<title>Setting a new environment to hold the session parameters. — lsSessionCache • LimeRick</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,10 @@
 
 
 
-<meta property="og:title" content="Get properties of a question in a survey — lsGetQuestionProperties" />
-<meta property="og:description" content="Get properties of a survey. All internal properties of a survey are available." />
+<meta property="og:title" content="Setting a new environment to hold the session parameters. — lsSessionCache" />
+<meta property="og:description" content="The lsSessionCache environment is crated upon the package loading
+and stores session data like session key or timestamp when the session started.
+The environment is accessed directly only by package functions not by a package user." />
 
 
 
@@ -108,73 +110,27 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get properties of a question in a survey</h1>
-    <small class="dont-index">Source: <a href='https://github.com/k127/LimeRick/blob/master/R/lsGetQuestionProperties.R'><code>R/lsGetQuestionProperties.R</code></a></small>
-    <div class="hidden name"><code>lsGetQuestionProperties.Rd</code></div>
+    <h1>Setting a new environment to hold the session parameters.</h1>
+    <small class="dont-index">Source: <a href='https://github.com/k127/LimeRick/blob/master/R/LimeRick.R'><code>R/LimeRick.R</code></a></small>
+    <div class="hidden name"><code>lsSessionCache.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Get properties of a survey. All internal properties of a survey are available.</p>
+    <p>The <code>lsSessionCache</code> environment is crated upon the package loading
+and stores session data like session key or timestamp when the session started.
+The environment is accessed directly only by package functions not by a package user.</p>
     </div>
 
-    <pre class="usage"><span class='fu'><a href='https://rdrr.io/pkg/LimeRick/man/lsGetQuestionProperties.html'>lsGetQuestionProperties</a></span>(
-  <span class='kw'>questionID</span>,
-  <span class='kw'>lang</span>,
-  properties = <span class='kw'>NULL</span>,
-  lsAPIurl = <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"lsAPIurl"</span>),
-  sessionKey = <span class='kw'>NULL</span>
-)</pre>
+    <pre class="usage"><span class='kw'>lsSessionCache</span></pre>
 
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>questionID</th>
-      <td><p>ID of the question</p></td>
-    </tr>
-    <tr>
-      <th>lang</th>
-      <td><p>Language code for the survey language which affects the question
-title amongst other properties (<strong>Note:</strong> The API expects
-one of the survey languages as part of the request rather than falling back to
-the default language of the survey. However, you can look up that default
-language using <code><a href='https://rdrr.io/pkg/LimeRick/man/lsGetSurveyProperties.html'>lsGetSurveyProperties</a>()</code>)</p></td>
-    </tr>
-    <tr>
-      <th>properties</th>
-      <td><p><em>(optional)</em> A vector with the particular property names to request, otherwise get all settings</p></td>
-    </tr>
-    <tr>
-      <th>lsAPIurl</th>
-      <td><p><em>(optional)</em> The URL of the <em>LimeSurvey RemoteControl 2</em> JSON-RPC API</p></td>
-    </tr>
-    <tr>
-      <th>sessionKey</th>
-      <td><p><em>(optional)</em> Authentication token, see <code><a href='https://rdrr.io/pkg/LimeRick/man/lsGetSessionKey.html'>lsGetSessionKey</a>()</code></p></td>
-    </tr>
-    </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>A list of question properties or a single property</p>
+    <p>An object of class <code>environment</code> of length 1.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    
-<ul>
-<li><p><a href='https://api.limesurvey.org/classes/remotecontrol_handle.html#method_get_question_properties'>https://api.limesurvey.org/classes/remotecontrol_handle.html#method_get_question_properties</a></p></li>
-<li><p><a href='https://api.limesurvey.org/classes/Question.html'>https://api.limesurvey.org/classes/Question.html</a> (for a list of available properties)</p></li>
-</ul>
+    <p><a href='https://github.com/cloudyr/limer/blob/master/R/get_session_key.R'>https://github.com/cloudyr/limer/blob/master/R/get_session_key.R</a></p>
 
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p><code><a href='https://rdrr.io/pkg/LimeRick/man/lsSetQuestionProperties.html'>lsSetQuestionProperties</a>()</code></p></div>
-
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'>if</span> (<span class='fl'>FALSE</span>) {
-  <span class='fu'><a href='https://rdrr.io/pkg/LimeRick/man/lsGetQuestionProperties.html'>lsGetQuestionProperties</a></span>(<span class='st'>"13"</span>, lang = <span class='st'>"en"</span>)
-  <span class='fu'><a href='https://rdrr.io/pkg/LimeRick/man/lsGetQuestionProperties.html'>lsGetQuestionProperties</a></span>(<span class='st'>"13"</span>, lang = <span class='st'>"en"</span>, properties = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='st'>"mandatory"</span>))
-}
-</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

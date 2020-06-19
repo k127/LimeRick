@@ -6,14 +6,14 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create and return a session key or close the RPC session — lsGetSessionKey • LimeRick</title>
+<title>Create and return a session key — lsGetSessionKey • LimeRick</title>
 
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
 
@@ -39,7 +39,7 @@
 
 
 
-<meta property="og:title" content="Create and return a session key or close the RPC session — lsGetSessionKey" />
+<meta property="og:title" content="Create and return a session key — lsGetSessionKey" />
 <meta property="og:description" content="Creates a new JSON-RPC session key. This is mandatory for all following LimeSurvey RemoteControl 2 function calls." />
 
 
@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">LimeRick</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.2.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
       </span>
     </div>
 
@@ -108,7 +108,7 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create and return a session key or close the RPC session</h1>
+    <h1>Create and return a session key</h1>
     <small class="dont-index">Source: <a href='https://github.com/k127/LimeRick/blob/master/R/lsGetSessionKey.R'><code>R/lsGetSessionKey.R</code></a></small>
     <div class="hidden name"><code>lsGetSessionKey.Rd</code></div>
     </div>
@@ -156,14 +156,12 @@
 </ul></li>
 </ul>
 
+    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
+
+    <p><a href='https://api.limesurvey.org/classes/remotecontrol_handle.html#method_get_session_key'>https://api.limesurvey.org/classes/remotecontrol_handle.html#method_get_session_key</a></p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'>
-<ul>
-<li><p><code><a href='https://rdrr.io/pkg/LimeRick/man/lsReleaseSessionKey.html'>lsReleaseSessionKey()</a></code></p></li>
-<li><p><a href='https://api.limesurvey.org/classes/remotecontrol_handle.html#method_get_session_key'>https://api.limesurvey.org/classes/remotecontrol_handle.html#method_get_session_key</a></p></li>
-</ul>
-</div>
+    <div class='dont-index'><p><code><a href='https://rdrr.io/pkg/LimeRick/man/lsReleaseSessionKey.html'>lsReleaseSessionKey</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'>if</span> (<span class='fl'>FALSE</span>) {

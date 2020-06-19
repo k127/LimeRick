@@ -12,8 +12,8 @@
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
 
@@ -40,17 +40,7 @@
 
 
 <meta property="og:title" content="Bridge between LimeSurvey and R — LimeRick" />
-<meta property="og:description" content="The LimeRick package enables close connection between R and LimeSurvey
--- one of the most open source scripts for computer aided web interviewing.
-Using the LimeSurvey RemoteControl2 JSON-RPC API for two way data exchange
-allows for:
-importing on-line survey responses into R,
-adding new responses to the survey directly from R,
-automatically accessing surveys and question properties,
-implementing passive measurement surveys,
-developing data products based on real time declarative data collection.
-
-" />
+<meta property="og:description" content="This package is a LimeSurvey RemoteControl 2 JSON-RPC API Client for R." />
 
 
 
@@ -82,7 +72,7 @@ developing data products based on real time declarative data collection.
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">LimeRick</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.2.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
       </span>
     </div>
 
@@ -124,43 +114,31 @@ developing data products based on real time declarative data collection.
     </div>
 
     <div class="ref-description">
-    <p>The <code>LimeRick</code> package enables close connection between R and LimeSurvey
--- one of the most open source scripts for computer aided web interviewing.
-Using the LimeSurvey RemoteControl2 JSON-RPC API for two way data exchange
-allows for:</p><ul>
-<li><p>importing on-line survey responses into R,</p></li>
+    <p>This package is a <em><a href='https://www.limesurvey.org/'>LimeSurvey</a> RemoteControl 2</em> JSON-RPC API Client for R.</p>
+    </div>
+
+
+
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>This package enables close connection between R and LimeSurvey
+— an open source applocation for online interviewing.
+Using the LimeSurvey API for bidirectional data exchange allows for:</p><ul>
+<li><p>importing survey responses into R,</p></li>
 <li><p>adding new responses to the survey directly from R,</p></li>
 <li><p>automatically accessing surveys and question properties,</p></li>
-<li><p>implementing passive measurement surveys,</p></li>
 <li><p>developing data products based on real time declarative data collection.</p></li>
 </ul>
 
-    </div>
+    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <pre class="usage"><span class='kw'>lsSessionCache</span></pre>
-
-
-    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
-
-    <p>An object of class <code>environment</code> of length 1.</p>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>This package is a <em>LimeSurvey RemoteControl 2</em> JSON-RPC API Client.</p>
-<p>The <code><a href='https://rdrr.io/pkg/LimeRick/man/LimeRick.html'>lsSessionCache</a></code> environment is crated upon the package loading
-and stores session data like session key or timestamp when the session started.
-The environment is accessed directly only by package functions not by a package user.</p>
-<p>If you need help with your research or commercial projects,
-feel free to contact me via my homepage contact form:
-<a href='http://www.wais.kamil.rzeszow.pl'>http://www.wais.kamil.rzeszow.pl</a>.</p>
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'>
+    
 <ul>
-<li><p><a href='http://www.wais.kamil.rzeszow.pl/LimeRick'>http://www.wais.kamil.rzeszow.pl/LimeRick</a> [the package homepage]</p></li>
-<li><p><a href='https://github.com/kalimu/LimeRick'>https://github.com/kalimu/LimeRick</a> [source code &amp; development version of the package]</p></li>
-<li><p><a href='http://limesurvey.org'>http://limesurvey.org</a> [LimeSurvey homepage]</p></li>
+<li><p><a href='https://k127.github.io/LimeRick/'>https://k127.github.io/LimeRick/</a> (package homepage)</p></li>
+<li><p><a href='https://github.com/k127/LimeRick/'>https://github.com/k127/LimeRick/</a> (source code)</p></li>
+<li><p><a href='https://github.com/k127/LimeRick/issues/'>https://github.com/k127/LimeRick/issues/</a> (issue tracker)</p></li>
 </ul>
-</div>
+
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
