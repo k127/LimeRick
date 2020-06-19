@@ -18,8 +18,7 @@ Description: Enables close connection between R and LimeSurvey - one of the most
     implementing passive measurement surveys,
     developing data products based on real-time declarative data collection, and more.
 License: MIT + file LICENSE
-URL: https://github.com/k127/LimeRick,
-    https://k127.github.io/LimeRick
+URL: https://k127.github.io/LimeRick
 BugReports: https://github.com/k127/LimeRick/issues
 Imports:
     httr (>= 1.2.1),
