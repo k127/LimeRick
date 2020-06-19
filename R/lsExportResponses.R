@@ -7,7 +7,7 @@
 #' @param headingType \emph{(optional)} Type of the column headers (mainly questions). One out of \code{"code"}, \code{"full"}, \code{"abbreviated"}
 #' @param responseType \emph{(optional)} Answer codes (\code{"short"}) where applicable, or full answer texts (\code{"long"})
 #' @param lsAPIurl \emph{(optional)} The URL of the \emph{LimeSurvey RemoteControl 2} JSON-RPC API
-#' @param sessionKey \emph{(optional)} Authentication token, see \code{\link{lsGetSessionKey()}}
+#' @param sessionKey \emph{(optional)} Authentication token, see \code{\link{lsGetSessionKey}()}
 #'
 #' @return A data frame with the survey responses
 #'
@@ -15,8 +15,7 @@
 #'   lsExportResponses("123456", completionStatus = "incomplete", headingType = "abbreviated")
 #' }
 #'
-#' @seealso
-#' \url{https://api.limesurvey.org/classes/remotecontrol_handle.html#method_export_responses}
+#' @references \url{https://api.limesurvey.org/classes/remotecontrol_handle.html#method_export_responses}
 #'
 #' @export
 #'

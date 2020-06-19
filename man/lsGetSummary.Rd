@@ -21,7 +21,7 @@ as string or \code{"all"} as a list}
 
 \item{lsAPIurl}{\emph{(optional)} The URL of the \emph{LimeSurvey RemoteControl 2} JSON-RPC API}
 
-\item{sessionKey}{\emph{(optional)} Authentication token, see \code{\link{lsGetSessionKey()}}}
+\item{sessionKey}{\emph{(optional)} Authentication token, see \code{\link{lsGetSessionKey}}}
 }
 \value{
 A string if \code{status} is provided and not \code{"all"},
@@ -36,6 +36,6 @@ Get survey summary, regarding token usage and survey participation
 }
 
 }
-\seealso{
+\references{
 \url{https://api.limesurvey.org/classes/remotecontrol_handle.html#method_get_summary}
 }

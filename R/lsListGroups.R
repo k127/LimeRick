@@ -3,7 +3,7 @@
 #' @param surveyID ID of the survey containing the groups
 #' @param lang \emph{(optional)} Language code for the language -- if not given, due to a bug in the API, instead of just the base language of the particular survey, all languages are returned
 #' @param lsAPIurl \emph{(optional)} The URL of the \emph{LimeSurvey RemoteControl 2} JSON-RPC API
-#' @param sessionKey \emph{(optional)} Authentication token, see \code{\link{lsGetSessionKey()}}
+#' @param sessionKey \emph{(optional)} Authentication token, see \code{\link{lsGetSessionKey}()}
 #'
 #' @return The ids and all attributes of all survey groups
 #'
@@ -12,8 +12,7 @@
 #'   lsListGroups("123456", lang = "fr")
 #' }
 #'
-#' @seealso
-#' \url{https://api.limesurvey.org/classes/remotecontrol_handle.html#method_list_groups}
+#' @references \url{https://api.limesurvey.org/classes/remotecontrol_handle.html#method_list_groups}
 #'
 #' @export
 #'

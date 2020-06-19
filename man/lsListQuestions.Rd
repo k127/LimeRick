@@ -18,13 +18,13 @@ lsListQuestions(
 \item{lang}{Language code for the survey language (\strong{Note:} The API expects
 one of the survey languages as part of the request rather than falling back to
 the default language of the survey. However, you can look up that default
-language using \code{\link{lsGetSurveyProperties()}})}
+language using \code{\link{lsGetSurveyProperties}()})}
 
 \item{groupID}{\emph{(optional)} ID of the group to list questions}
 
 \item{lsAPIurl}{\emph{(optional)} The URL of the \emph{LimeSurvey RemoteControl 2} JSON-RPC API}
 
-\item{sessionKey}{\emph{(optional)} Authentication token, see \code{\link{lsGetSessionKey()}}}
+\item{sessionKey}{\emph{(optional)} Authentication token, see \code{\link{lsGetSessionKey}()}}
 }
 \value{
 The list of questions
@@ -39,6 +39,6 @@ Return the ids and info of (sub-)questions of a survey/group
 }
 
 }
-\seealso{
+\references{
 \url{https://api.limesurvey.org/classes/remotecontrol_handle.html#method_list_questions}
 }

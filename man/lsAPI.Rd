@@ -25,8 +25,6 @@ Fire a request against the \emph{LimeSurvey RemoteControl 2} JSON-RPC API.
 }
 
 }
-\seealso{
-\itemize{
-  \item \url{https://api.limesurvey.org/classes/remotecontrol_handle.html}
-}
+\references{
+\url{https://api.limesurvey.org/classes/remotecontrol_handle.html}
 }

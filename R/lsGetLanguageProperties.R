@@ -2,9 +2,9 @@
 #'
 #' @param surveyID ID of the Survey
 #' @param properties array|null  \emph{(optional)} A list with the particular properties to get, default to all attributes
-#' @param lang \emph{(optional)} Language code for the language to update - if not given the base language of the particular survey is used
+#' @param lang \emph{(optional)} Language code for the language to update — if not given the base language of the particular survey is used
 #' @param lsAPIurl \emph{(optional)} The URL of the \emph{LimeSurvey RemoteControl 2} JSON-RPC API
-#' @param sessionKey \emph{(optional)} Authentication token, see \code{\link{lsGetSessionKey()}}
+#' @param sessionKey \emph{(optional)} Authentication token, see \code{\link{lsGetSessionKey}()}
 #'
 #' @return A list in case of success containing the requested values
 #'
@@ -16,10 +16,9 @@
 #'                           properties = list("surveyls_email_confirm"))
 #' }
 #'
-#' @seealso \itemize{
-#'   \item \code{\link{lsSetLanguageProperties()}}
-#'   \item \url{https://api.limesurvey.org/classes/remotecontrol_handle.html#method_get_language_properties}
-#' }
+#' @seealso \code{\link{lsSetLanguageProperties}()}
+#'
+#' @references \url{https://api.limesurvey.org/classes/remotecontrol_handle.html#method_get_language_properties}
 #'
 #' @export
 #'

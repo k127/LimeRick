@@ -1,4 +1,4 @@
-#' Create and return a session key or close the RPC session
+#' Create and return a session key
 #'
 #' Creates a new JSON-RPC session key. This is mandatory for all following \emph{LimeSurvey RemoteControl 2} function calls.
 #'
@@ -18,10 +18,9 @@
 #'   lsGetSessionKey()
 #' }
 #'
-#' @seealso \itemize{
-#'   \item \code{\link{lsReleaseSessionKey()}}
-#'   \item \url{https://api.limesurvey.org/classes/remotecontrol_handle.html#method_get_session_key}
-#' }
+#' @seealso \code{\link{lsReleaseSessionKey}()}
+#'
+#' @references \url{https://api.limesurvey.org/classes/remotecontrol_handle.html#method_get_session_key}
 #'
 #' @export
 #'

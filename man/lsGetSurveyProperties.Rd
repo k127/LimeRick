@@ -18,7 +18,7 @@ lsGetSurveyProperties(
 
 \item{lsAPIurl}{\emph{(optional)} The URL of the \emph{LimeSurvey RemoteControl 2} JSON-RPC API}
 
-\item{sessionKey}{\emph{(optional)} Authentication token, see \code{\link{lsGetSessionKey()}}}
+\item{sessionKey}{\emph{(optional)} Authentication token, see \code{\link{lsGetSessionKey}()}}
 }
 \value{
 A list of survey properties or a single property
@@ -35,7 +35,7 @@ Get properties of a survey. All internal properties of a survey are available.
 }
 
 }
-\seealso{
+\references{
 \itemize{
   \item \url{https://api.limesurvey.org/classes/remotecontrol_handle.html#method_get_survey_properties}
   \item \url{https://api.limesurvey.org/classes/Survey.html} (for a list of available properties)

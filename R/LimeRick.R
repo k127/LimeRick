@@ -1,7 +1,32 @@
+#' Bridge between LimeSurvey and R
+#'
+#' This package is a \emph{\href{https://www.limesurvey.org/}{LimeSurvey} RemoteControl 2} JSON-RPC API Client for R.
+#'
+#' This package enables close connection between R and LimeSurvey
+#' — an open source applocation for online interviewing.
+#' Using the LimeSurvey API for bidirectional data exchange allows for:
+#' \itemize{
+#'   \item importing survey responses into R,
+#'   \item adding new responses to the survey directly from R,
+#'   \item automatically accessing surveys and question properties,
+#'   \item developing data products based on real time declarative data collection.
+#' }
+#'
+#' @references \itemize{
+#'   \item \url{https://k127.github.io/LimeRick/} (package homepage)
+#'   \item \url{https://github.com/k127/LimeRick/} (source code)
+#'   \item \url{https://github.com/k127/LimeRick/issues/} (issue tracker)
+#' }
+#'
+#' @docType package
+#' @name LimeRick
+#'
+NULL
+
 .onAttach <- function(libname, pkgname) {
 
     packageStartupMessage(paste("\nWelcome to LimeRick package version:",
-                                 utils::packageVersion("LimeRick")))
+                                utils::packageVersion("LimeRick")))
 
     packageStartupMessage("\nPackage website: http://k127.github.io/LimeRick")
 
@@ -16,52 +41,19 @@
     packageStartupMessage("\nFirst you need to set login parameters and obtain a session key. \nSee the lsGetSessionKey() function help page (?lsGetSessionKey).\n")
 }
 
-#' Bridge between LimeSurvey and R
+
+#' Setting a new environment to hold the session parameters.
 #'
-#' The \code{LimeRick} package enables close connection between R and LimeSurvey
-#' -- one of the most open source scripts for computer aided web interviewing.
-#' Using the LimeSurvey RemoteControl2 JSON-RPC API for two way data exchange
-#' allows for:
-#' \itemize{
-#'   \item importing on-line survey responses into R,
-#'   \item adding new responses to the survey directly from R,
-#'   \item automatically accessing surveys and question properties,
-#'   \item implementing passive measurement surveys,
-#'   \item developing data products based on real time declarative data collection.
-#' }
-#'
-#' This package is a \emph{LimeSurvey RemoteControl 2} JSON-RPC API Client.
-#'
-#' The \code{\link{lsSessionCache}} environment is crated upon the package loading
+#' The \code{lsSessionCache} environment is crated upon the package loading
 #' and stores session data like session key or timestamp when the session started.
 #' The environment is accessed directly only by package functions not by a package user.
 #'
-#' If you need help with your research or commercial projects,
-#' feel free to contact me via my homepage contact form:
-#' \url{http://www.wais.kamil.rzeszow.pl}.
-
+# This line hides this function doc from the reference manual since it's
+# "of interest to other developers extending your package, but not most users"
+# (http://r-pkgs.had.co.nz/man.html#roxygen-comments)
+#' @keywords internal
 #'
-#' @docType package
+#' @references \url{https://github.com/cloudyr/limer/blob/master/R/get_session_key.R}
 #'
-#' @name LimeRick
-#'
-#'
-
-# @importFrom magrittr "%>%"
-# @import utils
-
-#' @seealso
-#' \itemize{
-#'   \item \url{http://www.wais.kamil.rzeszow.pl/LimeRick} [the package homepage]
-#'   \item \url{https://github.com/kalimu/LimeRick} [source code & development version of the package]
-#'   \item \url{http://limesurvey.org} [LimeSurvey homepage]
-#' }
-#'
-
-# Setting a new environment to hold the session parameters.
-    # Based on https://github.com/cloudyr/limer/blob/master/R/get_session_key.R
-
-    lsSessionCache <- new.env(parent = emptyenv())
-    lsSessionCache$check <- "OK"
-
-NULL
+lsSessionCache <- new.env(parent = emptyenv())
+lsSessionCache$check <- "OK"

@@ -17,11 +17,11 @@ lsAddResponse(
 \item{response}{The actual response. A list of answers, where the keys must
 follow the format \code{paste0(surveyID, "X", groupID, "X", questionID)}
 e.g. \code{"527317X1X11"}. To obtain these group and question IDs,
-see \code{\link{lsListGroups()}} and \code{\link{lsListQuestions()}}}
+see \code{\link{lsListGroups}()} and \code{\link{lsListQuestions}()}}
 
 \item{lsAPIurl}{\emph{(optional)} The URL of the \emph{LimeSurvey RemoteControl 2} JSON-RPC API}
 
-\item{sessionKey}{\emph{(optional)} Authentication token, see \code{\link{lsGetSessionKey()}}}
+\item{sessionKey}{\emph{(optional)} Authentication token, see \code{\link{lsGetSessionKey}()}}
 }
 \value{
 The response ID or an list with status message (can include result_id)
@@ -36,6 +36,6 @@ Add a response to the survey responses collection
 }
 
 }
-\seealso{
+\references{
 \url{https://api.limesurvey.org/classes/remotecontrol_handle.html#method_add_response}
 }

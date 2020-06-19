@@ -1,0 +1,6 @@
+template:
+  params:
+    bootswatch: flatly
+destination: docs
+development:
+  mode: auto

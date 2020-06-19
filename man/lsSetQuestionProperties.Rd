@@ -19,16 +19,16 @@ so no survey ID is required here) -- not to be confused with the question code}
 \item{lang}{Language code for the survey language (\strong{Note:} The API expects
 one of the survey languages as part of the request rather than falling back to
 the default language of the survey. However, you can look up that default
-language using \code{\link{lsGetSurveyProperties()}})}
+language using \code{\link{lsGetSurveyProperties}()})}
 
 \item{properties}{A list with the particular field names as keys and their values to set on that particular question
-(see \code{\link{lsListQuestions()}} for available properties. \strong{Restricted} properties are:
+(see \code{\link{lsListQuestions}()} for available properties. \strong{Restricted} properties are:
 \code{qid}, \code{gid}, \code{sid}, \code{parent_qid}, \code{language}, \code{type},
 \code{question_order} in some condition (with dependencies).}
 
 \item{lsAPIurl}{\emph{(optional)} The URL of the \emph{LimeSurvey RemoteControl 2} JSON-RPC API}
 
-\item{sessionKey}{\emph{(optional)} Authentication token, see \code{\link{lsGetSessionKey()}}}
+\item{sessionKey}{\emph{(optional)} Authentication token, see \code{\link{lsGetSessionKey}()}}
 }
 \value{
 List of succeeded and failed modifications according to internal validation
@@ -43,9 +43,9 @@ Set question properties
 }
 
 }
-\seealso{
-\itemize{
-  \item \code{\link{lsGetQuestionProperties()}}
-  \item \url{https://api.limesurvey.org/classes/remotecontrol_handle.html#method_set_question_properties}
+\references{
+\url{https://api.limesurvey.org/classes/remotecontrol_handle.html#method_set_question_properties}
 }
+\seealso{
+\code{\link{lsGetQuestionProperties}()}
 }

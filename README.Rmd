@@ -28,7 +28,7 @@ knitr::opts_chunk$set(
 
 **Bridge between R and LimeSurvey**
 
-This package is a _[LimeSurvey](http://limesurvey.org) RemoteControl 2_ JSON-RPC API Client.
+This package is a _[LimeSurvey](http://limesurvey.org) RemoteControl 2_ JSON-RPC API Client for R.
 
 ## Motivation
 

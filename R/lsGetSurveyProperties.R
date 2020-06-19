@@ -5,7 +5,7 @@
 #' @param surveyID ID of the survey
 #' @param properties \emph{(optional)} A vector with the particular property names to request, otherwise get all settings
 #' @param lsAPIurl \emph{(optional)} The URL of the \emph{LimeSurvey RemoteControl 2} JSON-RPC API
-#' @param sessionKey \emph{(optional)} Authentication token, see \code{\link{lsGetSessionKey()}}
+#' @param sessionKey \emph{(optional)} Authentication token, see \code{\link{lsGetSessionKey}()}
 #'
 #' @return A list of survey properties or a single property
 #'
@@ -16,7 +16,7 @@
 #'                                                     "anonymized"))
 #' }
 #'
-#' @seealso \itemize{
+#' @references \itemize{
 #'   \item \url{https://api.limesurvey.org/classes/remotecontrol_handle.html#method_get_survey_properties}
 #'   \item \url{https://api.limesurvey.org/classes/Survey.html} (for a list of available properties)
 #' }

@@ -7,9 +7,9 @@
 #' @param lang Language code for the survey language (\strong{Note:} The API expects
 #'   one of the survey languages as part of the request rather than falling back to
 #'   the default language of the survey. However, you can look up that default
-#'   language using \code{\link{lsGetSurveyProperties()}})
+#'   language using \code{\link{lsGetSurveyProperties}()})
 #' @param lsAPIurl \emph{(optional)} The URL of the \emph{LimeSurvey RemoteControl 2} JSON-RPC API
-#' @param sessionKey \emph{(optional)} Authentication token, see \code{\link{lsGetSessionKey()}}
+#' @param sessionKey \emph{(optional)} Authentication token, see \code{\link{lsGetSessionKey}()}
 #'
 #' @return A table of answer options
 #'
@@ -18,8 +18,7 @@
 #'   lsGetQuestionProperties(questionID = "13", lang = "en", properties = list("mandatory"))
 #' }
 #'
-#' @seealso
-#' \code{\link{lsGetQuestionProperties()}}
+#' @seealso \code{\link{lsGetQuestionProperties}()}
 #'
 #' @export
 #'

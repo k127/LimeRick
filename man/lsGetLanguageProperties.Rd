@@ -15,13 +15,13 @@ lsGetLanguageProperties(
 \arguments{
 \item{surveyID}{ID of the Survey}
 
-\item{lang}{\emph{(optional)} Language code for the language to update - if not given the base language of the particular survey is used}
+\item{lang}{\emph{(optional)} Language code for the language to update — if not given the base language of the particular survey is used}
 
 \item{properties}{array|null  \emph{(optional)} A list with the particular properties to get, default to all attributes}
 
 \item{lsAPIurl}{\emph{(optional)} The URL of the \emph{LimeSurvey RemoteControl 2} JSON-RPC API}
 
-\item{sessionKey}{\emph{(optional)} Authentication token, see \code{\link{lsGetSessionKey()}}}
+\item{sessionKey}{\emph{(optional)} Authentication token, see \code{\link{lsGetSessionKey}()}}
 }
 \value{
 A list in case of success containing the requested values
@@ -39,9 +39,9 @@ Get survey language properties
 }
 
 }
-\seealso{
-\itemize{
-  \item \code{\link{lsSetLanguageProperties()}}
-  \item \url{https://api.limesurvey.org/classes/remotecontrol_handle.html#method_get_language_properties}
+\references{
+\url{https://api.limesurvey.org/classes/remotecontrol_handle.html#method_get_language_properties}
 }
+\seealso{
+\code{\link{lsSetLanguageProperties}()}
 }

@@ -4,7 +4,7 @@ LimeRick
 <!-- README.md is generated from README.Rmd. Please edit this file -->
 
 <!--
-[![Project Status: Concept – Minimal or no implementation has been done yet, or the repository is only intended to be a limited example, demo, or proof-of-concept.](https://www.repostatus.org/badges/latest/concept.svg)](https://www.repostatus.org/#concept)[![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://choosealicense.com/licenses/mit/)[![Last-changedate](https://img.shields.io/badge/last%20change-18431-yellowgreen.svg)](/commits/master)
+[![Project Status: Concept – Minimal or no implementation has been done yet, or the repository is only intended to be a limited example, demo, or proof-of-concept.](https://www.repostatus.org/badges/latest/concept.svg)](https://www.repostatus.org/#concept)[![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://choosealicense.com/licenses/mit/)[![Last-changedate](https://img.shields.io/badge/last%20change-18432-yellowgreen.svg)](/commits/master)
 
 
 
@@ -16,7 +16,7 @@ LimeRick
 **Bridge between R and LimeSurvey**
 
 This package is a *[LimeSurvey](http://limesurvey.org) RemoteControl 2*
-JSON-RPC API Client.
+JSON-RPC API Client for R.
 
 ## Motivation
 
@@ -49,7 +49,7 @@ devtools::install_github("k127/LimeRick")
 ``` r
 library(LimeRick)
 #> 
-#> Welcome to LimeRick package version: 0.0.2.9000
+#> Welcome to LimeRick package version: 0.2.0
 #> 
 #> Package website: http://k127.github.io/LimeRick
 #> 
