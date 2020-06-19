@@ -16,7 +16,7 @@ LimeRick
 **Bridge between R and LimeSurvey**
 
 This package is a *[LimeSurvey](http://limesurvey.org) RemoteControl 2*
-JSON-RPC API Client.
+JSON-RPC API Client for R.
 
 ## Motivation
 
