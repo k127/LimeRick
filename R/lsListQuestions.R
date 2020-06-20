@@ -24,6 +24,7 @@
 lsListQuestions = function(surveyID,
                            lang,
                            groupID = NULL,
+                           setTypes = TRUE,
                            lsAPIurl = getOption("lsAPIurl"),
                            sessionKey = NULL){
 
@@ -38,5 +39,26 @@ lsListQuestions = function(surveyID,
     data = lsAPI(method = "list_questions",
                  params = params,
                  lsAPIurl = lsAPIurl)
+
+    if (setTypes) data <- ls_setFieldTypes(data, list(
+        qid = "integer",
+        parent_qid = "integer",
+        sid = "character",
+        type = "factor",
+        title = "character",
+        question = "character",
+        #preg # TODO
+        help = "character",
+        #other # for now, keep ["Y", "N"] # TODO map to logical
+        #mandatory # for now, keep ["Y", "N"] # TODO map to logical
+        question_order = "integer",
+        language = "factor",
+        scale_id = "integer",
+        same_default = "integer",
+        relevance = "character",
+        #modulename # TODO
+        gid = "integer"
+    ))
+
     data
 }

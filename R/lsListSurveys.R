@@ -22,6 +22,7 @@
 #'
 lsListSurveys = function(
 #    username = NULL,
+                         setTypes = TRUE,
                          lsAPIurl = getOption("lsAPIurl"),
                          sessionKey = NULL) {
 
@@ -32,5 +33,14 @@ lsListSurveys = function(
     data = lsAPI(method = "list_surveys",
                  params = params,
                  lsAPIurl = lsAPIurl)
+
+    if (setTypes) data <- ls_setFieldTypes(data, list(
+      sid = "character",
+      surveyls_title = "character",
+      startdate = "datetime",
+      expires = "datetime"
+      #active # for now, keep ["Y", "N"] # TODO map to logical
+    ))
+
     data
 }

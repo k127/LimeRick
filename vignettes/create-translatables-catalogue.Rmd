@@ -1,0 +1,242 @@
+---
+title: "Creating a catalogue of translatables"
+output: rmarkdown::html_vignette
+description: >
+  Learn how pkgdown's automatic linking works, and how you can 
+  customise it.
+vignette: >
+  %\VignetteIndexEntry{Creating a catalogue of translatables}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## Use case
+
+* We want to create a catalogue (data frame)
+* With all translatable texts of a survey and
+* Ordered by `group_order` and `question_order`
+* For groups it should contain
+  * `group_name`
+  * `description`
+* For questions it should contain
+  * `question`
+  * `help`
+  * Whether it is a sub-question (`parent_qid != 0`)
+  * If it is a sub-question, `parent_qid` must be preserved in a way
+* For list questions it should contain all answer options
+  * `answerText`
+  * `answerCode` must be preserved in a way
+  * It must be connected to its question
+
+The catalogue should then be sent to a translator who will return it with
+replaced texts. Those texts should then be sent to the LimeSurvey application.
+
+## Design
+
+How could the catalogue look like?
+
+| Text ID | Source text | Target text |
+|---|---|---|
+| `paste0()` | "A group title" | "Ein Gruppentitel" |
+| … |  |  |
+
+## Environment preparation
+
+```{r}
+if (!require("tidyverse")) install.packages("tidyverse")
+library(tidyverse)
+
+if (!require("LimeRick")) {
+  if (!require("devtools")) install.packages("devtools")
+  devtools::install_github("k127/LimeRick")
+}
+library(LimeRick)
+```
+
+
+## Set up survey ID and source language, get a session key
+
+```{r}
+# The ID of the to be translated survey
+surveyID = "259165"
+
+# Let's say that our translation workflow has English as the source language
+lang = "en"
+
+# Get a session key for our future requests
+lsGetSessionKey()
+```
+
+
+## Get the group list
+
+```{r}
+# Note that the field group order has to be numerical for the arrangement to work
+groups <- arrange(lsListGroups(surveyID = surveyID), group_order)
+```
+
+
+## Get the question list
+
+```{r}
+questions <- arrange(lsListQuestions(surveyID = surveyID, lang = lang), question_order)
+
+# Note that what we actually receive is not a list
+class(questions)
+```
+
+# TODO suggest package "rapport"
+
+## Iterate over groups, questions
+
+```{r}
+# Create an empty data frame
+.key_text_id = "text_id"
+.key_source_text = "source_text"
+.key_target_text = "target_text"
+.col_names = c(.key_text_id, .key_source_text, .key_target_text)
+catalogue <- read.table(text = "",
+                        colClasses = c("character", "character", "character"),
+                        col.names = .col_names)
+
+for (.i in 1:nrow(groups)) {
+  .gid = groups[.i,]$gid
+  
+  # add group_name to catalogue
+  # TODO if source_text exists, only append text_id
+  .group_name =  groups[.i,]$group_name
+  if (trimws(.group_name) != "") {
+    .df_row_group_name = data.frame(paste0("GID__", .gid, "__group_name"), .group_name, "")
+    names(.df_row_group_name) = .col_names
+    catalogue = rbind(catalogue, .df_row_group_name)
+  }
+
+  # add description to catalogue
+  # TODO if source_text exists, only append text_id
+  .group_description = groups[.i,]$description
+  if (trimws(.group_description) != "") {
+    .df_row_group_description = data.frame(paste0("GID__", .gid, "__description"), .group_description, "")
+    names(.df_row_group_description) = .col_names
+    catalogue = rbind(catalogue, .df_row_group_description)
+  }
+
+  .group_questions = arrange(filter(questions, gid == .gid, parent_qid == 0), question_order)
+  for (.k in 1:nrow(.group_questions)) {
+    .qid = .group_questions[.k,]$qid
+    .title = .group_questions[.k,]$title
+
+    # catch question
+    # TODO if source_text exists, only append text_id
+    .question = .group_questions[.k,]$question
+    if (trimws(.question) != "") {
+      .df_row_questionn = data.frame(paste0(.title, "__question"), .question, "")
+      names(.df_row_questionn) = .col_names
+      catalogue = rbind(catalogue, .df_row_questionn)
+    }
+
+    # catch help
+    # TODO if source_text exists, only append text_id
+    .help = questions[.k,]$help
+    if (!is.na(.help) && trimws(.help) != "") {
+      .df_row_help = data.frame(paste0(.title, "__help"), .help, "")
+      names(.df_row_help) = .col_names
+      catalogue = rbind(catalogue, .df_row_help)
+    }
+    
+    # are there sub-questions?
+    .sub_questions = arrange(filter(questions, parent_qid == .qid), question_order)
+    if (nrow(.sub_questions) > 0) for (.l in 1:nrow(.sub_questions)) {
+      .sq_title = paste0(.title, "__", .sub_questions[.l,]$title)
+
+      # catch sub-question
+      .sub_question = .sub_questions[.l,]$question
+      if (!is.na(.sub_question) && trimws(.sub_question) != "") {
+        .df_row_sub_question = data.frame(paste0(.sq_title, "__question"), .sub_question, "")
+        names(.df_row_sub_question) = .col_names
+        catalogue = rbind(catalogue, .df_row_sub_question)
+      }
+    }
+  # TODO answer options
+  # TODO question validation tips and other translatables from question properties
+  }
+}
+```
+
+
+## Get answer options for each "L" type question
+
+```{r}
+# Type "L" seems to be the question type for lists, those own answer options
+filter(questions, type == "L")[,"qid"]
+
+ls_getAnswerOptions("170", lang = lang)
+```
+
+
+
+
+
+
+
+## Within a package
+
+pkgdown will automatically link to documentation and articles wherever it's possible to do unambiguously. This includes:
+
+* Bare function calls, like `build_site()`.
+* Calls to `?`, like `?build_site` or `package?pkgdown`.
+* Calls to `help()`, like `help("pkgdown")`.
+* Calls to `vignette()`, like `vignette("pkgdown")`.
+
+## Across packages
+
+Linking to documentation in another package is straightforward. Just adapt the call in the usual way:
+
+* `purrr::map()`, `MASS::addterm()`.
+* `?purrr::map`, `?MASS::addterm`.
+* `vignette("other-langs", package = "purrr")`, `vignette("longintro", package = "rpart")`
+
+If pkgdown can find a pkgdown site for the remote package, it will link to it; otherwise it will link to <http://rdrr.io/> for documentation, and CRAN for vignettes. In order for a pkgdown site to be findable, it needs to be listed in two places:
+
+*   In the `URL` field in the `DESCRIPTION`, as in
+    [dplyr](https://github.com/tidyverse/dplyr/blob/85faf79c1fd74f4b4f95319e5be6a124a8075502/DESCRIPTION#L15):
+  
+    ```
+    URL: http://dplyr.tidyverse.org, https://github.com/tidyverse/dplyr
+    ```
+
+*   In the `url` field in `_pkgdown.yml`, as in 
+    [dplyr](https://github.com/tidyverse/dplyr/blob/master/_pkgdown.yml#L1)
+    
+    ```yaml
+    url: https://dplyr.tidyverse.org
+    ```
+    
+    When this field is defined, pkgdown generate a public facing
+    [`pkgdown.yml` file](https://dplyr.tidyverse.org/pkgdown.yml) that provides
+    metadata about the site:
+    
+    ```yaml
+    pandoc: '2.2'
+    pkgdown: 1.3.0
+    pkgdown_sha: ~
+    articles:
+      compatibility: compatibility.html
+      dplyr: dplyr.html
+      dplyr_0.8.0: future/dplyr_0.8.0.html
+      dplyr_0.8.0_new_hybrid: future/dplyr_0.8.0_new_hybrid.html
+      programming: programming.html
+      two-table: two-table.html
+      window-functions: window-functions.html
+    urls:
+      reference: https://dplyr.tidyverse.org/reference
+      article: https://dplyr.tidyverse.org/articles
+    ```
+
+Now, when you build a pkgdown site for a package that links to the dplyr documentation (e.g., `dplyr::mutate()`), pkgdown looks first in dplyr's `DESCRIPTION` to find its website, then it looks for `pkgdown.yml`, and uses the metadata to generate the correct links.

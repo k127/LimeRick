@@ -18,6 +18,7 @@
 #'
 lsListGroups = function(surveyID,
                         lang = NULL,
+                        setTypes = TRUE,
                         lsAPIurl = getOption("lsAPIurl"),
                         sessionKey = NULL) {
 
@@ -38,6 +39,17 @@ lsListGroups = function(surveyID,
 
     if (!is.null(lang)) data <- data[data[, "language"] == lang,]
     ########################
+
+    if (setTypes) data <- ls_setFieldTypes(data, list(
+        gid = "integer",
+        sid = "character",
+        group_name = "character",
+        group_order = "integer",
+        description = "character",
+        language = "factor",
+        randomization_group = "integer",
+        grelevance = "character"
+    ))
 
     data
 }
