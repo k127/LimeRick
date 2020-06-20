@@ -2,7 +2,7 @@
 title: Pending tasks for next release
 ---
 
-* [ ] Revert change in NEWS, but move to new release section
+* [x] Revert change in NEWS, but move to new release section
 * [x] `devtools::spell_check()`
 * [ ] Either: `install.packages("formatR") ; formatR::tidy_dir("R")`
 * [x] Or: `install.packages("lintr") ; lintr::lint_package()` (see <http://r-pkgs.had.co.nz/r.html#style>)
@@ -12,28 +12,29 @@ title: Pending tasks for next release
 * [ ] Update readme badges
 * [x] Refactor readme: Tutorial
 * [x] Fix function documentations
-* [ ] Fix other `devtools::check()` errors, warnings
+* [x] Fix other `devtools::check()` errors, warnings
 * [ ] Create _LimeRick Test Survey_ to test against
+* [ ] Then mock tests with `httptest`
 * [ ] Write some tests
 * [ ] Create package website `devtools::build_site()`
-* [ ] Set up CI deployment to respective GitHub pages `usethis::use_pkgdown_travis()`
+* [x] Set up CI deployment to respective GitHub pages
       (<https://pkgdown.r-lib.org/reference/deploy_site_github.html>)
 * [ ] Regard funding organization (description file author `given = "...", role = "fnd"`)
-* [ ] Description file: fix maintainer
-* [ ] Description file: fix full authors
-* [ ] Description file: fix copyright holder
+* [x] Description file: fix maintainer
+* [x] Description file: fix full authors
+* [x] Description file: fix copyright holder
 * [x] Figure out best practice of ownership of abandoned projects (<https://opensource.stackexchange.com/a/558/18588>)
 * [x] Talk to current maintainer about maintenance
-* [ ] Refactor links in description and readme
+* [x] Refactor links in description and readme
 * [x] Purge `hello()`
-* [ ] Discover license file best practice
+* [x] Discover license file best practice
 * [x] Wrap function doc examples with `\dontrun{}`
 * [x] Refactor `@example` / `@examples`
-* [ ] Purge usage stats from R/*
-* [ ] clear `/man/` and rebuild docs: `devtools::document()`
-* [ ] `devtools::build_site()`
-* [ ] `devtools::build_readme()` ...
-* [ ] Do <https://pkgdown.r-lib.org/reference/build_site.html>
+* [x] Purge usage stats from R/*
+* [x] clear `/man/` and rebuild docs: `devtools::document()`
+* [x] `devtools::build_site()`
+* [x] `devtools::build_readme()` ...
+* [x] Do <https://pkgdown.r-lib.org/reference/build_site.html>
 
 ## For each release do
 
@@ -41,14 +42,15 @@ title: Pending tasks for next release
 * [ ] Set date in description file
 * [ ] Set version in description file
 * [ ] Update `NEWS` file (changelog)
-* [ ] `devtools::document();devtools::check()`
+* [ ] `devtools::document();devtools::check();devtools::build_readme()`
 * [ ] See <http://r-pkgs.had.co.nz/check.html#check-workflow>
 * [ ] Build (see respective section)
 
 ## Build
 
 * [ ] *META* *TODO* Gather more relevant task from the above sections
-* [ ] Clean and build site: `pkgdown::clean_site();devtools::build_site()`
+* [ ] Clean and build site: `pkgdown::clean_site();devtools::document();`
+      `devtools::build_readme();devtools::build_site()`
 
 ## Some vignette / article suggestions
 
