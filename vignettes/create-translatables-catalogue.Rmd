@@ -112,6 +112,8 @@ Set the path to front matter html files like that:
 ```
 
 ```{r}
+.ignore_questions <- c("Q1BX")
+
 # Create an empty data frame
 .key_text_id = "text_id"
 .key_source_text = "source_text"
@@ -156,6 +158,9 @@ for (.i in 1:nrow(groups)) {
   for (.k in 1:nrow(.group_questions)) {
     .qid = .group_questions[.k,]$qid
     .title = .group_questions[.k,]$title
+
+    # skip question if title in ignore list
+    if (.title %in% .ignore_questions) next
 
     # catch question
     # TODO if source_text exists, only append text_id
