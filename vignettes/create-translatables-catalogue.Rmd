@@ -88,14 +88,28 @@ groups <- arrange(lsListGroups(surveyID = surveyID, setTypes = TRUE), group_orde
 ```{r}
 questions <- arrange(lsListQuestions(surveyID = surveyID, lang = lang,
                                      setTypes = TRUE), question_order)
-
-# Note that what we actually receive is not a list
-class(questions)
 ```
 
 # TODO suggest package "rapport"
 
+## Read front / back matter from file
+
+Set the path to front matter html files like that:
+`options(front_matter_path = "./path/to/my/front/matter/files")`
+
+```{r}
+
+.front_matter <- list(
+  welcome = read_file(paste(getOption("front_matter_path"), "welcome.html", sep = "/")),
+  policy_label = read_file(paste(getOption("front_matter_path"), "survey_data_policy_label.html", sep = "/")),
+  policy_notice = read_file(paste(getOption("front_matter_path"), "survey_data_policy_notice.html", sep = "/")))
+```
+
 ## Iterate over groups, questions
+
+```{r}
+# TODO put functions here
+```
 
 ```{r}
 # Create an empty data frame
@@ -107,7 +121,14 @@ catalogue <- read.table(text = "",
                         colClasses = c("character", "character", "character"),
                         col.names = .col_names)
 
-# TODO add front matter
+# add front matter
+for (.front_matter_item_key in names(.front_matter)){
+  .front_matter_item_value <- .front_matter[.front_matter_item_key]
+  .df_row = data.frame(paste0("FRONTMATTER___", .front_matter_item_key), .front_matter_item_value, "")
+  names(.df_row) = .col_names
+  catalogue = rbind(catalogue, .df_row)
+}
+
 # TODO add back matter
 
 for (.i in 1:nrow(groups)) {
@@ -153,20 +174,6 @@ for (.i in 1:nrow(groups)) {
       names(.df_row_help) = .col_names
       catalogue = rbind(catalogue, .df_row_help)
     }
-    
-    # are there sub-questions?
-    .sub_questions = arrange(filter(questions, parent_qid == .qid), question_order)
-    if (nrow(.sub_questions) > 0) for (.l in 1:nrow(.sub_questions)) {
-      .sq_title = paste0(.title, "___SQ___", .sub_questions[.l,]$title)
-
-      # catch sub-question
-      .sub_question = .sub_questions[.l,]$question
-      if (!is.na(.sub_question) && trimws(.sub_question) != "") {
-        .df_row_sub_question = data.frame(paste0(.sq_title, "___sub_question"), .sub_question, "")
-        names(.df_row_sub_question) = .col_names
-        catalogue = rbind(catalogue, .df_row_sub_question)
-      }
-    }
 
     # answer options
     if (.group_questions[.k,]$type %in% c("L", "!", "F")) {
@@ -185,6 +192,20 @@ for (.i in 1:nrow(groups)) {
           names(.df_row_answer_text) = .col_names
           catalogue = rbind(catalogue, .df_row_answer_text)
         }
+      }
+    }
+
+    # are there sub-questions?
+    .sub_questions = arrange(filter(questions, parent_qid == .qid), question_order)
+    if (nrow(.sub_questions) > 0) for (.l in 1:nrow(.sub_questions)) {
+      .sq_title = paste0(.title, "___SQ___", .sub_questions[.l,]$title)
+
+      # catch sub-question
+      .sub_question = .sub_questions[.l,]$question
+      if (!is.na(.sub_question) && trimws(.sub_question) != "") {
+        .df_row_sub_question = data.frame(paste0(.sq_title, "___sub_question"), .sub_question, "")
+        names(.df_row_sub_question) = .col_names
+        catalogue = rbind(catalogue, .df_row_sub_question)
       }
     }
 
