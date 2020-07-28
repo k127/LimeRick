@@ -79,14 +79,15 @@ lsGetSessionKey()
 
 ```{r}
 # Note that the field group order has to be numerical for the arrangement to work
-groups <- arrange(lsListGroups(surveyID = surveyID), group_order)
+groups <- arrange(lsListGroups(surveyID = surveyID, setTypes = TRUE), group_order)
 ```
 
 
 ## Get the question list
 
 ```{r}
-questions <- arrange(lsListQuestions(surveyID = surveyID, lang = lang), question_order)
+questions <- arrange(lsListQuestions(surveyID = surveyID, lang = lang,
+                                     setTypes = TRUE), question_order)
 
 # Note that what we actually receive is not a list
 class(questions)
@@ -106,6 +107,9 @@ catalogue <- read.table(text = "",
                         colClasses = c("character", "character", "character"),
                         col.names = .col_names)
 
+# TODO add front matter
+# TODO add back matter
+
 for (.i in 1:nrow(groups)) {
   .gid = groups[.i,]$gid
   
@@ -113,7 +117,7 @@ for (.i in 1:nrow(groups)) {
   # TODO if source_text exists, only append text_id
   .group_name =  groups[.i,]$group_name
   if (trimws(.group_name) != "") {
-    .df_row_group_name = data.frame(paste0("GID__", .gid, "__group_name"), .group_name, "")
+    .df_row_group_name = data.frame(paste0("GID___", .gid, "___group_name"), .group_name, "")
     names(.df_row_group_name) = .col_names
     catalogue = rbind(catalogue, .df_row_group_name)
   }
@@ -122,7 +126,7 @@ for (.i in 1:nrow(groups)) {
   # TODO if source_text exists, only append text_id
   .group_description = groups[.i,]$description
   if (trimws(.group_description) != "") {
-    .df_row_group_description = data.frame(paste0("GID__", .gid, "__description"), .group_description, "")
+    .df_row_group_description = data.frame(paste0("GID___", .gid, "___description"), .group_description, "")
     names(.df_row_group_description) = .col_names
     catalogue = rbind(catalogue, .df_row_group_description)
   }
@@ -136,7 +140,7 @@ for (.i in 1:nrow(groups)) {
     # TODO if source_text exists, only append text_id
     .question = .group_questions[.k,]$question
     if (trimws(.question) != "") {
-      .df_row_questionn = data.frame(paste0(.title, "__question"), .question, "")
+      .df_row_questionn = data.frame(paste0(.title, "___question"), .question, "")
       names(.df_row_questionn) = .col_names
       catalogue = rbind(catalogue, .df_row_questionn)
     }
@@ -145,7 +149,7 @@ for (.i in 1:nrow(groups)) {
     # TODO if source_text exists, only append text_id
     .help = questions[.k,]$help
     if (!is.na(.help) && trimws(.help) != "") {
-      .df_row_help = data.frame(paste0(.title, "__help"), .help, "")
+      .df_row_help = data.frame(paste0(.title, "___help"), .help, "")
       names(.df_row_help) = .col_names
       catalogue = rbind(catalogue, .df_row_help)
     }
@@ -153,18 +157,39 @@ for (.i in 1:nrow(groups)) {
     # are there sub-questions?
     .sub_questions = arrange(filter(questions, parent_qid == .qid), question_order)
     if (nrow(.sub_questions) > 0) for (.l in 1:nrow(.sub_questions)) {
-      .sq_title = paste0(.title, "__", .sub_questions[.l,]$title)
+      .sq_title = paste0(.title, "___SQ___", .sub_questions[.l,]$title)
 
       # catch sub-question
       .sub_question = .sub_questions[.l,]$question
       if (!is.na(.sub_question) && trimws(.sub_question) != "") {
-        .df_row_sub_question = data.frame(paste0(.sq_title, "__question"), .sub_question, "")
+        .df_row_sub_question = data.frame(paste0(.sq_title, "___sub_question"), .sub_question, "")
         names(.df_row_sub_question) = .col_names
         catalogue = rbind(catalogue, .df_row_sub_question)
       }
     }
-  # TODO answer options
-  # TODO question validation tips and other translatables from question properties
+
+    # answer options
+    if (.group_questions[.k,]$type %in% c("L", "!", "F")) {
+      # TODO don't request answer options from server if already present
+      #if (is.null(answer_options[[.qid]])) {
+        .current_answer_options = ls_getAnswerOptions(questionID = .qid, lang = lang)
+        #append(answer_options, list(.qid = current_answer_options))
+      #}
+      if (nrow(.current_answer_options) > 0) for (.m in 1:nrow(.current_answer_options)) {
+        .answer_code = paste0(.title, "___AO___", .current_answer_options[.m,]$answerCode)
+
+        # catch answer option
+        .answer_text = .current_answer_options[.m,]$answerText
+        if (!is.na(.answer_text) && trimws(.answer_text) != "") {
+          .df_row_answer_text = data.frame(paste0(.answer_code, "___answer_text"), .answer_text, "")
+          names(.df_row_answer_text) = .col_names
+          catalogue = rbind(catalogue, .df_row_answer_text)
+        }
+      }
+    }
+
+    # TODO question validation tips and other translatables from question properties
+    # TODO other_replace_text (manually)
   }
 }
 ```
@@ -179,64 +204,14 @@ filter(questions, type == "L")[,"qid"]
 ls_getAnswerOptions("170", lang = lang)
 ```
 
+## Export the catalogue data frame to Excel file
 
+```{r}
+if (!require("writexl")) install.packages("writexl")
+library(writexl)
+write_xlsx(catalogue, "./catalogue/catalogue.xlsx") # cwd = vignettes
+# NOTE that to avoid confusion whether translation texts should be replaced or appended,
+# we could lock: Excel > Review tab > Protection
+# Check "Format cells..." with target text column marked: uncheck cell protection
+```
 
-
-
-
-
-## Within a package
-
-pkgdown will automatically link to documentation and articles wherever it's possible to do unambiguously. This includes:
-
-* Bare function calls, like `build_site()`.
-* Calls to `?`, like `?build_site` or `package?pkgdown`.
-* Calls to `help()`, like `help("pkgdown")`.
-* Calls to `vignette()`, like `vignette("pkgdown")`.
-
-## Across packages
-
-Linking to documentation in another package is straightforward. Just adapt the call in the usual way:
-
-* `purrr::map()`, `MASS::addterm()`.
-* `?purrr::map`, `?MASS::addterm`.
-* `vignette("other-langs", package = "purrr")`, `vignette("longintro", package = "rpart")`
-
-If pkgdown can find a pkgdown site for the remote package, it will link to it; otherwise it will link to <http://rdrr.io/> for documentation, and CRAN for vignettes. In order for a pkgdown site to be findable, it needs to be listed in two places:
-
-*   In the `URL` field in the `DESCRIPTION`, as in
-    [dplyr](https://github.com/tidyverse/dplyr/blob/85faf79c1fd74f4b4f95319e5be6a124a8075502/DESCRIPTION#L15):
-  
-    ```
-    URL: http://dplyr.tidyverse.org, https://github.com/tidyverse/dplyr
-    ```
-
-*   In the `url` field in `_pkgdown.yml`, as in 
-    [dplyr](https://github.com/tidyverse/dplyr/blob/master/_pkgdown.yml#L1)
-    
-    ```yaml
-    url: https://dplyr.tidyverse.org
-    ```
-    
-    When this field is defined, pkgdown generate a public facing
-    [`pkgdown.yml` file](https://dplyr.tidyverse.org/pkgdown.yml) that provides
-    metadata about the site:
-    
-    ```yaml
-    pandoc: '2.2'
-    pkgdown: 1.3.0
-    pkgdown_sha: ~
-    articles:
-      compatibility: compatibility.html
-      dplyr: dplyr.html
-      dplyr_0.8.0: future/dplyr_0.8.0.html
-      dplyr_0.8.0_new_hybrid: future/dplyr_0.8.0_new_hybrid.html
-      programming: programming.html
-      two-table: two-table.html
-      window-functions: window-functions.html
-    urls:
-      reference: https://dplyr.tidyverse.org/reference
-      article: https://dplyr.tidyverse.org/articles
-    ```
-
-Now, when you build a pkgdown site for a package that links to the dplyr documentation (e.g., `dplyr::mutate()`), pkgdown looks first in dplyr's `DESCRIPTION` to find its website, then it looks for `pkgdown.yml`, and uses the metadata to generate the correct links.
