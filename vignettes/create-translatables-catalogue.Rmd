@@ -113,6 +113,10 @@ Set the path to front matter html files like that:
 
 ```{r}
 .ignore_questions <- c("Q1BX")
+.other_replace_texts <- list(
+  Q1C3 = "Postcode",
+  Q2B1 = "Amount",
+  Q5A1 = "Other, specify:")
 
 # Create an empty data frame
 .key_text_id = "text_id"
@@ -178,6 +182,14 @@ for (.i in 1:nrow(groups)) {
       .df_row_help = data.frame(paste0(.title, "___help"), .help, "")
       names(.df_row_help) = .col_names
       catalogue = rbind(catalogue, .df_row_help)
+    }
+
+    # add "other_replace_text"
+    if (.title %in% names(.other_replace_texts)) {
+      .other_replace_text = .other_replace_texts[[.title]]
+      .df_row_other_replace_text = data.frame(paste0(.title, "___other_field"), .other_replace_text, "")
+      names(.df_row_other_replace_text) = .col_names
+      catalogue = rbind(catalogue, .df_row_other_replace_text)
     }
 
     # answer options
