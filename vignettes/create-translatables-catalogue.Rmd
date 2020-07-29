@@ -173,7 +173,7 @@ for (.i in 1:nrow(groups)) {
 
     # catch help
     # TODO if source_text exists, only append text_id
-    .help = questions[.k,]$help
+    .help = .group_questions[.k,]$help
     if (!is.na(.help) && trimws(.help) != "") {
       .df_row_help = data.frame(paste0(.title, "___help"), .help, "")
       names(.df_row_help) = .col_names
