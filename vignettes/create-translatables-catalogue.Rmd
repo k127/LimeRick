@@ -251,5 +251,82 @@ write_xlsx(catalogue, "./catalogue/catalogue.xlsx") # cwd = vignettes
 # NOTE that to avoid confusion whether translation texts should be replaced or appended,
 # we could lock: Excel > Review tab > Protection
 # Check "Format cells..." with target text column marked: uncheck cell protection
+remove(catalogue)
+```
+
+
+# Update translatables from spreadsheet
+
+## Read Excel file
+
+```{r}
+if (!require("readxl")) install.packages("readxl")
+library(readxl)
+catalogue <- read_xlsx("./catalogue/lwc2-catalogue.2020-07-29.protected.xlsx")
+translated <- read_xlsx("./catalogue/lwc2-catalogue.2020-07-29.protected.zh.xlsx") %>% select(2)
+```
+
+## Setup API connection
+
+```{r}
+lsGetSessionKey()
+lang = "zh-Hans"
+```
+
+```{r}
+for (.i in 1:nrow(catalogue)) {
+  .text_id = catalogue[.i,]$text_id
+  .a_text_id = str_split(.text_id, "___")
+  .a_text_id_last = sapply(.a_text_id, tail, 1)
+  .source_text = catalogue[.i,]$source_text
+  .target_text = translated[.i, 1]
+
+  message(paste("TODO", .text_id, .a_text_id_last, .source_text, .target_text))
+
+  if (.a_text_id_last == "welcome") {
+
+    #lsSetLanguageProperties(surveyID = surveyID, lang = lang, properties = list(surveyls_welcometext = .target_text))
+
+  } else if (.a_text_id_last == "policy_label") {
+
+    #lsSetLanguageProperties(surveyID = surveyID, lang = lang, properties = list(surveyls_policy_notice_label = .target_text))
+
+  } else if (.a_text_id_last == "policy_notice") {
+
+    #lsSetLanguageProperties(surveyID = surveyID, lang = lang, properties = list(surveyls_policy_notice = .target_text))
+
+  } else if (.a_text_id_last == "group_name") {
+
+    .gid = .a_text_id[[1]][2]
+    # TODO
+
+  } else if (.a_text_id_last == "question") {
+
+    .qid = .a_text_id[[1]][1]
+    # TODO
+
+  } else if (.a_text_id_last == "answer_text") {
+
+    # TODO
+
+  } else if (.a_text_id_last == "sub_question") {
+
+    # TODO
+
+  } else if (.a_text_id_last == "help") {
+
+    # TODO
+
+  } else if (.a_text_id_last == "other_field") {
+
+    # TODO
+
+  } else {
+
+    stop(.a_text_id_last)
+  }
+}
+
+cat("Done.")
 ```
 
