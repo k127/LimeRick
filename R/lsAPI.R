@@ -75,7 +75,7 @@ lsAPI = function(method,
         apiResult = jsonlite::fromJSON(content)$result
 
         # we need also check the response status
-        if (class(apiResult) == "list" && !is.null(apiResult$status)) {
+        if (class(apiResult) == "list" && !is.null(apiResult$status) && apiResult$status != "OK") {
 
             # throwing an error and stopping execution of the script
             stop(apiResult$status)
