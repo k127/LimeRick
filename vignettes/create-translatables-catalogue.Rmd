@@ -279,21 +279,33 @@ for (.i in 1:nrow(catalogue)) {
   .a_text_id = str_split(.text_id, "___")
   .a_text_id_last = sapply(.a_text_id, tail, 1)
   .source_text = catalogue[.i,]$source_text
-  .target_text = translated[.i, 1]
-
-  message(paste("TODO", .text_id, .a_text_id_last, .source_text, .target_text))
+  .target_text_col_name = colnames(translated)[1]
+  .target_text = translated[.i, 1][[.target_text_col_name]]
+  .todo = TRUE
 
   if (.a_text_id_last == "welcome") {
 
-    #lsSetLanguageProperties(surveyID = surveyID, lang = lang, properties = list(surveyls_welcometext = .target_text))
+    next
+    message(paste("setting surveyls_welcometext", .target_text, "lang = ", lang))
+    message(lsSetLanguageProperties(surveyID = surveyID, lang = lang,
+                            properties = list(surveyls_welcometext = .target_text))[2])
+    .todo = FALSE
 
   } else if (.a_text_id_last == "policy_label") {
 
-    #lsSetLanguageProperties(surveyID = surveyID, lang = lang, properties = list(surveyls_policy_notice_label = .target_text))
+    next
+    message(paste("setting surveyls_policy_notice_label:", .target_text, "lang = ", lang))
+    message(lsSetLanguageProperties(surveyID = surveyID, lang = lang,
+                            properties = list(surveyls_policy_notice_label = .target_text))[2])
+    .todo = FALSE
 
   } else if (.a_text_id_last == "policy_notice") {
 
-    #lsSetLanguageProperties(surveyID = surveyID, lang = lang, properties = list(surveyls_policy_notice = .target_text))
+    next
+    message(paste("setting surveyls_policy_notice:", .target_text, "lang = ", lang))
+    message(lsSetLanguageProperties(surveyID = surveyID, lang = lang,
+                            properties = list(surveyls_policy_notice = .target_text))[2])
+    .todo = FALSE
 
   } else if (.a_text_id_last == "group_name") {
 
@@ -302,31 +314,63 @@ for (.i in 1:nrow(catalogue)) {
 
   } else if (.a_text_id_last == "question") {
 
-    .qid = .a_text_id[[1]][1]
-    # TODO
+    next
+    .question_title = .a_text_id[[1]][1]
+    .qid = filter(questions, title == .question_title)$qid
+
+    message(jsonlite::toJSON(list(task = "setting question", qid = .qid, title = .question_title,
+                                  target_text = .target_text, lang = lang)))
+    message(lsSetQuestionProperties(.qid, lang = lang, properties = list(question = .target_text)))
+
+    .todo = FALSE
 
   } else if (.a_text_id_last == "answer_text") {
 
+    next
     # TODO
 
   } else if (.a_text_id_last == "sub_question") {
 
-    # TODO
+    next
+    .question_title = .a_text_id[[1]][1]
+    .qid = filter(questions, title == .question_title)$qid
+    .sub_question_title = .a_text_id[[1]][3]
+    .sqid = filter(questions, title == .sub_question_title, parent_qid == .qid)$qid
+
+    message(jsonlite::toJSON(list(task = "setting sub_question", qid = .sqid,
+                                  parent_qid = .qid, title = .sub_question_title,
+                                  target_text = .target_text, lang = lang)))
+    message(lsSetQuestionProperties(.sqid, lang = lang, properties = list(question = .target_text)))
+
+    .todo = FALSE
 
   } else if (.a_text_id_last == "help") {
 
+    next
     # TODO
 
   } else if (.a_text_id_last == "other_field") {
 
+    next
     # TODO
 
   } else {
 
     stop(.a_text_id_last)
   }
+
+  if (.todo) message(paste("TODO", .text_id, .a_text_id_last, .source_text, .target_text))
 }
 
 cat("Done.")
 ```
 
+## Other fixes
+
+```{r}
+# set end URL (same as source)
+.end_url = "https://lifewithcorona.org/"
+message(paste("setting surveyls_url:", .end_url, "lang = ", lang))
+message(lsSetLanguageProperties(surveyID = surveyID, lang = lang,
+                                properties = list(surveyls_url = .end_url))[2])
+```
