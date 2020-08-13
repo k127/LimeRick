@@ -61,7 +61,7 @@ library(LimeRick)
 ```
 
 
-## Set up survey ID and source language, get a session key
+## Set up survey ID and source language
 
 ```{r}
 # The ID of the to be translated survey
@@ -69,8 +69,12 @@ surveyID = "259165"
 
 # Let's say that our translation workflow has English as the source language
 lang = "en"
+```
+
 
 # Get a session key for our future requests
+
+```{r}
 lsGetSessionKey()
 ```
 
@@ -326,7 +330,6 @@ for (.i in 1:nrow(catalogue)) {
 
   } else if (.a_text_id_last == "answer_text") {
 
-    next
     # TODO
 
   } else if (.a_text_id_last == "sub_question") {
@@ -347,11 +350,18 @@ for (.i in 1:nrow(catalogue)) {
   } else if (.a_text_id_last == "help") {
 
     next
-    # TODO
+    .question_title = .a_text_id[[1]][1]
+    .qid = filter(questions, title == .question_title)$qid
+
+    message(jsonlite::toJSON(list(task = "setting help", qid = .qid,
+                                  title = .question_title,
+                                  target_text = .target_text, lang = lang)))
+    message(lsSetQuestionProperties(.qid, lang = lang, properties = list(help = .target_text)))
+
+    .todo = FALSE
 
   } else if (.a_text_id_last == "other_field") {
 
-    next
     # TODO
 
   } else {
