@@ -265,10 +265,14 @@ remove(catalogue)
 
 ```{r}
 lsGetSessionKey()
-lang = "zh-Hans"
+lang = "vi"
 .baseFileName = "./translations/lwc2-catalogue.2020-07-29.protected"
 .xslxFileExt = ".xlsx"
 ```
+
+## List questions
+
+The questions data frame has to be up to date. Re-load to be sure. See above.
 
 ## Read Excel file
 
@@ -295,7 +299,6 @@ for (.i in 1:nrow(catalogue)) {
 
   if (.a_text_id_last == "welcome") {
 
-    next
     message(paste("setting surveyls_welcometext", .target_text, "lang = ", lang))
     message(lsSetLanguageProperties(surveyID = surveyID, lang = lang,
                             properties = list(surveyls_welcometext = .target_text))[2])
@@ -303,7 +306,6 @@ for (.i in 1:nrow(catalogue)) {
 
   } else if (.a_text_id_last == "policy_label") {
 
-    next
     message(paste("setting surveyls_policy_notice_label:", .target_text, "lang = ", lang))
     message(lsSetLanguageProperties(surveyID = surveyID, lang = lang,
                             properties = list(surveyls_policy_notice_label = .target_text))[2])
@@ -311,7 +313,6 @@ for (.i in 1:nrow(catalogue)) {
 
   } else if (.a_text_id_last == "policy_notice") {
 
-    next
     message(paste("setting surveyls_policy_notice:", .target_text, "lang = ", lang))
     message(lsSetLanguageProperties(surveyID = surveyID, lang = lang,
                             properties = list(surveyls_policy_notice = .target_text))[2])
@@ -319,13 +320,11 @@ for (.i in 1:nrow(catalogue)) {
 
   } else if (.a_text_id_last == "group_name") {
 
-    .gid = .a_text_id[[1]][2]
-    #lsSetGroupProperties(groupID = .gid, properties = list(group_name = .target_text))
-    # TODO
+    # this is done elsewhere, see below
+    .todo = FALSE
 
   } else if (.a_text_id_last == "question") {
 
-    next
     .question_title = .a_text_id[[1]][1]
     .qid = filter(questions, title == .question_title)$qid
 
@@ -337,11 +336,11 @@ for (.i in 1:nrow(catalogue)) {
 
   } else if (.a_text_id_last == "answer_text") {
 
-    # TODO
+    # this is done elsewhere, see below
+    .todo = FALSE
 
   } else if (.a_text_id_last == "sub_question") {
 
-    next
     .question_title = .a_text_id[[1]][1]
     .qid = filter(questions, title == .question_title)$qid
     .sub_question_title = .a_text_id[[1]][3]
@@ -356,7 +355,6 @@ for (.i in 1:nrow(catalogue)) {
 
   } else if (.a_text_id_last == "help") {
 
-    next
     .question_title = .a_text_id[[1]][1]
     .qid = filter(questions, title == .question_title)$qid
 
@@ -370,6 +368,7 @@ for (.i in 1:nrow(catalogue)) {
   } else if (.a_text_id_last == "other_field") {
 
     # TODO
+    # this has to be done manually
 
   } else {
 
