@@ -405,11 +405,13 @@ answer_options <-
   left_join(questions, by = "title") %>%
   select(-dropme, -parent_qid, -sid, -type, -question, -preg, -help, -other, -mandatory,
          -question_order, -scale_id, -same_default, -relevance, -modulename, -gid, -language)
-write.csv(answer_options, file = paste0(.baseFileName, ".", lang, ".csv"))
+write.csv(answer_options, file = paste0(.baseFileName, ".", lang, ".answer_options.csv"))
 ```
 
 ```{r}
-```
-
-```{r}
+group_names <-
+  filter(catalogue, str_ends(text_id, "___group_name")) %>%
+  separate(col = text_id, into = c("dropme", "gid"), sep = "___") %>%
+  select(-dropme)
+write.csv(group_names, file = paste0(.baseFileName, ".", lang, ".group_names.csv"))
 ```
