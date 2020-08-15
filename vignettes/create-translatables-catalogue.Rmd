@@ -261,21 +261,28 @@ remove(catalogue)
 
 # Update translatables from spreadsheet
 
-## Read Excel file
-
-```{r}
-if (!require("readxl")) install.packages("readxl")
-library(readxl)
-catalogue <- read_xlsx("./catalogue/lwc2-catalogue.2020-07-29.protected.xlsx")
-translated <- read_xlsx("./catalogue/lwc2-catalogue.2020-07-29.protected.zh.xlsx") %>% select(2)
-```
-
 ## Setup API connection
 
 ```{r}
 lsGetSessionKey()
 lang = "zh-Hans"
+.baseFileName = "./translations/lwc2-catalogue.2020-07-29.protected"
+.xslxFileExt = ".xlsx"
 ```
+
+## Read Excel file
+
+```{r}
+if (!require("readxl")) install.packages("readxl")
+library(readxl)
+catalogue <- read_xlsx(paste0(.baseFileName, .xslxFileExt))
+.translated <- read_xlsx(paste0(.baseFileName, ".", lang, .xslxFileExt)) %>% select(2)
+# add translated to lang column to catalogue
+.target_text_col_name = colnames(.translated)[1]
+catalogue$target_text <- .translated[[.target_text_col_name]]
+```
+
+## Load translated texts into LimeSurvey
 
 ```{r}
 for (.i in 1:nrow(catalogue)) {
@@ -283,8 +290,7 @@ for (.i in 1:nrow(catalogue)) {
   .a_text_id = str_split(.text_id, "___")
   .a_text_id_last = sapply(.a_text_id, tail, 1)
   .source_text = catalogue[.i,]$source_text
-  .target_text_col_name = colnames(translated)[1]
-  .target_text = translated[.i, 1][[.target_text_col_name]]
+  .target_text = catalogue[.i,]$target_text
   .todo = TRUE
 
   if (.a_text_id_last == "welcome") {
@@ -314,6 +320,7 @@ for (.i in 1:nrow(catalogue)) {
   } else if (.a_text_id_last == "group_name") {
 
     .gid = .a_text_id[[1]][2]
+    #lsSetGroupProperties(groupID = .gid, properties = list(group_name = .target_text))
     # TODO
 
   } else if (.a_text_id_last == "question") {
@@ -383,4 +390,26 @@ cat("Done.")
 message(paste("setting surveyls_url:", .end_url, "lang = ", lang))
 message(lsSetLanguageProperties(surveyID = surveyID, lang = lang,
                                 properties = list(surveyls_url = .end_url))[2])
+```
+
+## Groups and answer options workaround: manipulating the LSS file with PHP
+
+Unfortunately, we cannot use the LimeSurvey JSON RPC API for updating group names
+and answer options, so we create a translation data file to be used by a PHP script
+that directly updates the LimeSurvey XML file (LSS).
+
+```{r}
+answer_options <-
+  filter(catalogue, str_ends(text_id, "___answer_text")) %>%
+  separate(col = text_id, into = c("title", "dropme", "answer_code"), sep = "___") %>%
+  left_join(questions, by = "title") %>%
+  select(-dropme, -parent_qid, -sid, -type, -question, -preg, -help, -other, -mandatory,
+         -question_order, -scale_id, -same_default, -relevance, -modulename, -gid, -language)
+write.csv(answer_options, file = paste0(.baseFileName, ".", lang, ".csv"))
+```
+
+```{r}
+```
+
+```{r}
 ```
