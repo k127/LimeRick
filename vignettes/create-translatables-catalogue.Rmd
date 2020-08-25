@@ -367,8 +367,8 @@ for (.i in 1:nrow(catalogue)) {
 
   } else if (.a_text_id_last == "other_field") {
 
-    # TODO
-    # this has to be done manually
+    # this is done elsewhere, see below
+    .todo = FALSE
 
   } else {
 
@@ -391,7 +391,9 @@ message(lsSetLanguageProperties(surveyID = surveyID, lang = lang,
                                 properties = list(surveyls_url = .end_url))[2])
 ```
 
-## Groups and answer options workaround: manipulating the LSS file with PHP
+## Workaround: manipulating the LSS file with PHP
+
+### Answer options
 
 Unfortunately, we cannot use the LimeSurvey JSON RPC API for updating group names
 and answer options, so we create a translation data file to be used by a PHP script
@@ -407,10 +409,24 @@ answer_options <-
 write.csv(answer_options, file = paste0(.baseFileName, ".", lang, ".answer_options.csv"))
 ```
 
+### Group names
+
 ```{r}
 group_names <-
   filter(catalogue, str_ends(text_id, "___group_name")) %>%
   separate(col = text_id, into = c("dropme", "gid"), sep = "___") %>%
   select(-dropme)
 write.csv(group_names, file = paste0(.baseFileName, ".", lang, ".group_names.csv"))
+```
+
+## Other fields
+
+```{r}
+other_fields <-
+  filter(catalogue, str_ends(text_id, "___other_field")) %>%
+  separate(col = text_id, into = c("title", "dropme"), sep = "___") %>%
+  left_join(questions, by = "title") %>%
+  select(-dropme, -parent_qid, -sid, -type, -question, -preg, -help, -other, -mandatory,
+         -question_order, -scale_id, -same_default, -relevance, -modulename, -gid, -language)
+write.csv(other_fields, file = paste0(.baseFileName, ".", lang, ".other_fields.csv"))
 ```
