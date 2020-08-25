@@ -265,6 +265,11 @@ remove(catalogue)
 
 ```{r}
 lsGetSessionKey()
+```
+
+## Define target language
+
+```{r}
 lang = "vi"
 .baseFileName = "./translations/lwc2-catalogue.2020-07-29.protected"
 .xslxFileExt = ".xlsx"
