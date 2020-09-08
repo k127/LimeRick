@@ -331,13 +331,19 @@ for (.i in 1:nrow(catalogue)) {
   } else if (.a_text_id_last == "question") {
 
     .question_title = .a_text_id[[1]][1]
+    .todo = FALSE
+
+    if (nrow(filter(questions, title == .question_title)) == 0) {
+      # the current question does not exist (anymore?)
+      message(paste("*** *** *** SKIPPING QUESTION", .question_title, "*** *** ***"))
+      next
+    }
+
     .qid = filter(questions, title == .question_title)$qid
 
     message(jsonlite::toJSON(list(task = "setting question", qid = .qid, title = .question_title,
                                   target_text = .target_text, lang = lang)))
     message(lsSetQuestionProperties(.qid, lang = lang, properties = list(question = .target_text)))
-
-    .todo = FALSE
 
   } else if (.a_text_id_last == "answer_text") {
 
