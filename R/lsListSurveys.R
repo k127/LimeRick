@@ -2,6 +2,7 @@
 #'
 # THIS DOESN'T SEEM TO WORK ON THE API SIDE:
 # @param username \emph{(optional)} To get all surveys belonging to username, otherwise get all surveys
+#' @param setTypes \emph{(optional)} Fix field types of returned data frame
 #' @param lsAPIurl \emph{(optional)} The URL of the \emph{LimeSurvey RemoteControl 2} JSON-RPC API
 #' @param sessionKey \emph{(optional)} Authentication token, see \code{\link{lsGetSessionKey}()}
 #'

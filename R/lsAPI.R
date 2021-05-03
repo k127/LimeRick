@@ -67,7 +67,7 @@ lsAPI = function(method,
     # surprisingly API returns code 200 event if something is not OK (wrong password)
     if (httr::status_code(apiResponse) == 200) {
 
-        content = httr::content(apiResponse, encoding = "UTF-8")
+        content = httr::content(apiResponse, as = "text", encoding = "UTF-8")
 
         if (!is.character(content) && is.null(content$result))
             stop("Server is responding but not in a proper way. Please check the API URL.")

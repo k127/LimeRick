@@ -2,6 +2,7 @@
 #'
 #' @param surveyID ID of the survey containing the groups
 #' @param lang \emph{(optional)} Language code for the language -- if not given, due to a bug in the API, instead of just the base language of the particular survey, all languages are returned
+#' @param setTypes \emph{(optional)} Fix field types of returned data frame
 #' @param lsAPIurl \emph{(optional)} The URL of the \emph{LimeSurvey RemoteControl 2} JSON-RPC API
 #' @param sessionKey \emph{(optional)} Authentication token, see \code{\link{lsGetSessionKey}()}
 #'

@@ -20,7 +20,7 @@
 #' @export
 #'
 lsExportResponses = function(surveyID,
-                             #documentType = "csv",  # currently not supported
+                             documentType = "csv",
                              lang = NULL,
                              completionStatus = "all",
                              headingType = "code",
@@ -28,11 +28,14 @@ lsExportResponses = function(surveyID,
                              #fromResponseID = NULL, # currently not supported
                              #toResponseID = NULL,   # currently not supported
                              #fields = NULL,         # currently not supported
+                             asRawText = FALSE,    # TODO function documentation
                              lsAPIurl = getOption("lsAPIurl"),
                              sessionKey = NULL) {
 
     # LimeSurvey plugins can provide other document types
-    # availableCoreDocumentTypes = c("pdf", "csv", "xls", "doc", "json")
+    # availableCoreDocumentTypes = c("pdf", "csv", "xls", "doc", "json", "rdata", "rsyntax")
+    documentTypes = c("csv", "rdata", "rsyntax")
+    documentType = match.arg(documentType, documentTypes)
 
     # todo: wokring with other document types (JSON especially; is a bit
     # problematic)
@@ -40,7 +43,7 @@ lsExportResponses = function(surveyID,
     completionStati = c("all", "complete", "incomplete")
     completionStatus = match.arg(completionStatus, completionStati)
 
-    headingTypes = c("code", "full", "abbreviated")
+    headingTypes = c("code", "full", "abbreviated", "codetext")
     headingType = match.arg(headingType, headingTypes)
 
     responseTypes = c("short", "long")
@@ -56,7 +59,7 @@ lsExportResponses = function(surveyID,
 
     params = list(sSessionKey = sessionKey,
                   iSurveyID = surveyID,
-                  sDocumentType = "csv",
+                  sDocumentType = documentType,
                   sLanguageCode = lang,
                   sCompletionStatus = completionStatus,
                   sHeadingType = headingType,
@@ -65,6 +68,7 @@ lsExportResponses = function(surveyID,
                   # todo: there is a problem with API with setting this params
                   # to NULL: Error: Argument 'txt' must be a JSON string, URL or
                   # file.
+                  # EDIT: explicit specification of httr::content(as = "text") seems to solve this.
 
                   # sFromResponseID = NULL,
                   # sToResponseID = NULL,
@@ -78,15 +82,22 @@ lsExportResponses = function(surveyID,
     # decoding data from base64 format
     data = rawToChar(base64enc::base64decode(data))
 
-    # importing data from CSV format into data frame
-    # (!) this specific format is tested against LimeSurvey 3.22.15:
-    # CSV field separator is a semicolon (";")!
-    df = utils::read.csv(textConnection(data),
-                  encoding = "UTF-8",
-                  quote = "'\"",
-                  sep = ";",
-                  na.strings = c("", "\"\""),
-                  stringsAsFactors = FALSE)
+    if (asRawText) {
 
-    df
+        data
+
+    } else {
+
+        # importing data from CSV format into data frame
+        # (!) this specific format is tested against LimeSurvey 3.22.15:
+        # CSV field separator is a semicolon (";")!
+        df = utils::read.csv(textConnection(data),
+                      encoding = "UTF-8",
+                      quote = "'\"",
+                      sep = ";",
+                      na.strings = c("", "\"\""),
+                      stringsAsFactors = FALSE)
+
+        df
+    }
 }
